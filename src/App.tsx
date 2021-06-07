@@ -36,8 +36,8 @@ function App() {
   return (
     <div className='app'>
       <Grid container className={classes.container}>
-        <Grid item container spacing={3} direction='column' style={{  gap: 32, padding: 24 }}>
-          <Grid container item xs={3} spacing={2} alignItems='center' direction='column' className={clsx(classes.mainSection, classes.infoSection)}>
+        <Grid item container spacing={3} style={{  gap: 32, padding: 24 }}>
+          <Grid container item sm={3} spacing={2} alignItems='center' direction='column' className={clsx(classes.mainSection, classes.infoSection)}>
             <Grid item>
               <Avatar alt="Balasubramanian Nagarajan" src="/asserts/images/profile.png"
                 className={classes.avatar} />
@@ -51,7 +51,7 @@ function App() {
               </ButtonGroup>
             </Grid>
           </Grid>
-          <Grid container item xs={9} spacing={2} direction='column' className={classes.mainSection}>
+          <Grid container item sm={9} spacing={2} direction='column' className={classes.mainSection}>
           </Grid>
         </Grid>
       </Grid>
