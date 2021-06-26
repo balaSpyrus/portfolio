@@ -1,0 +1,26 @@
+{
+  "name": {
+    "first": "Balaubramanian",
+    "middle": "",
+    "last": "Nagarajan"
+  },
+  "avatarURL": "/asserts/images/profile.png",
+  "about": "Creative Engineer offering 5 years of experience.Enthusiastic about developing forward thinking solutions to tomorrow's productivity problems. Resourceful and adaptable approach to challenges. Highly effective at developing new programs and fixing problems with existing systems.",
+  "social": {
+    "linkedInURL": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/",
+    "facebookURL": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/",
+    "instagramURL": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/"
+  },
+  "contact": {
+    "email": "bbalax.bbalax@gmail.com",
+    "phone": "+91 9487680919"
+  },
+  "main": {
+    "work": [
+      {
+        "current": true,
+        "designation": "Software Engineer - III"
+      }
+    ]
+  }
+}
