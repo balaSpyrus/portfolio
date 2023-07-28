@@ -1,11 +1,23 @@
-import { Avatar, ButtonGroup, Fade, Grid, GridSize, Grow, IconButton, Link, makeStyles, Theme, Typography } from '@material-ui/core';
-import { AccountBoxRounded, CallRounded, EmailRounded, Facebook, Instagram, LinkedIn, WorkRounded } from '@material-ui/icons';
-import React, { useContext, useState } from 'react';
+import {
+    Avatar,
+    ButtonGroup,
+    Fade,
+    Grid,
+    IconButton,
+    Link,
+    Theme,
+    Typography,
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { AccountBoxRounded, CallRounded, EmailRounded, Facebook, Instagram, LinkedIn, WorkRounded } from '@mui/icons-material';
+import React, { useContext, } from 'react';
 import { Profile } from '../context';
+import { useLayoutStyles } from '../App';
+import clsx from 'clsx';
+import { useTheme } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
     mainGrid: {
-        height: 'calc(100% - 440px)',
         width: '100%',
         position: 'relative',
         overflow: 'hidden',
@@ -44,11 +56,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: theme.spacing(18),
         height: theme.spacing(18),
         transition: '250ms all ease-in',
-
-        "&:hover": {
-            boxShadow: `0px 0px 20px 0px #00000021`,
-        }
-
+        margin: '0 auto',
     }
 }))
 
@@ -57,6 +65,12 @@ const getIcon = (key: string) => {
     switch (key) {
         case 'work':
             return <WorkRounded />
+        case 'linkedIn':
+            return <LinkedIn />
+        case 'facebook':
+            return <Facebook />
+        case 'instagram':
+            return <Instagram />
         default:
             return <AccountBoxRounded />
     }
@@ -65,80 +79,49 @@ const getIcon = (key: string) => {
 const SideSection = () => {
 
     const classes = useStyles();
-    const {profileData,setContent} = useContext(Profile)
-    const currCompany = profileData.main.work.find(each => each.current);
-    const name = Object.keys(profileData.name).reduce((acc, curr) => `${acc} ${(profileData.name as any)[curr] ?? ''}`, "").trim()
-    const [showDesc, setShowDesc] = useState(false);
+    const layoutClasses = useLayoutStyles();
 
-    const Content = Object.keys(profileData.main).map((each, i, arr) => {
+    const theme = useTheme();
+    const { profileData: {
+        name, main: { work }, avatarURL, social, about, contact: { email, phone }
+    }, setContent } = useContext(Profile)
 
-        const grid = Math.ceil(12 / arr.length) as GridSize
-
-        return <Grid key={i} item xs={grid >= 4 ? grid : 4}
-            onClick={() => setContent(each)}>{getIcon(each)}</Grid>
-    })
-
-    const InfoSection = () => <>
-        <Grid item>
-            <Avatar alt="Balasubramanian Nagarajan" src={profileData.avatarURL}
-                className={classes.avatar} />
-        </Grid>
-        <Grid item>
-            <Typography color='primary' variant='h6'>{name}</Typography>
-            <Fade in={!!currCompany?.designation} unmountOnExit>
-                <Typography color='textPrimary' variant='subtitle1'>{currCompany?.designation}</Typography>
-            </Fade>
-        </Grid>
-        <Grid item>
-            <ButtonGroup color='primary'>
-                <IconButton href={profileData.social.linkedInURL}> <LinkedIn /></IconButton>
-                <Fade in={!!profileData.social.facebookURL} unmountOnExit>
-                    <IconButton href='https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/'> <Facebook /></IconButton>
-                </Fade>
-                <Fade in={!!profileData.social.instagramURL} unmountOnExit>
-                    <IconButton href='https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/'> <Instagram /></IconButton>
-                </Fade>
-            </ButtonGroup>
-        </Grid>
-        <Grid item
-            onMouseLeave={() => setShowDesc(false)}
-            onMouseEnter={() => setShowDesc(true)}>
-            <Typography variant='subtitle2' color='primary' >
-                Few words about me
-            </Typography>
-        </Grid>
-        <Grow in={showDesc} mountOnEnter unmountOnExit timeout={{
-            enter: 500,
-            exit: 0
-        }}>
-            <Grid item>
-                <Typography variant='subtitle2' color='textSecondary' align='justify'>
-                    {profileData.about}
-                </Typography>
-            </Grid>
-        </Grow>
-    </>
-    const NavSection = () => <Grow in={!showDesc} mountOnEnter unmountOnExit timeout={{
-        enter: 500,
-        exit: 0
-    }}>
-        <Grid container item spacing={2} className={classes.mainGrid} justify='space-evenly' >
-            {Content}
-        </Grid>
-    </Grow>
-
-    const ContactSection = () => <Grid container item justify='space-between' className={classes.contact}>
-        <Link color='textSecondary' variant='subtitle2'><EmailRounded />{profileData.contact.email}</Link>
-        <Link color='textSecondary' variant='subtitle2'><CallRounded />{profileData.contact.phone}</Link>
-    </Grid>
+    const currCompany = work.find(({ current }) => current);
+    const fullName = Object.values(name).join(' ').trim()
 
     return (
-        <>
-            <InfoSection />
-            <NavSection />
-            <ContactSection />
-        </>
-
+        <Grid container item className={clsx(layoutClasses.layout, layoutClasses.infoSection)} direction={'column'}>
+            <Grid item >
+                <Avatar alt={name.first} src={avatarURL}
+                    className={classes.avatar} />
+            </Grid>
+            <Grid item >
+                <Typography color='primary' variant='h6'>{fullName}</Typography>
+                <Fade in={!!currCompany?.designation} unmountOnExit>
+                    <Typography color='textPrimary' variant='subtitle1'>{currCompany?.designation}</Typography>
+                </Fade>
+            </Grid>
+            <Grid item >
+                <ButtonGroup color='primary'>
+                    {
+                        Object.entries(social).map(([platform, url]) => <Fade in={!!url} unmountOnExit>
+                            <IconButton
+                                href={url} target='_blank'
+                                size="large">{getIcon(platform)}</IconButton>
+                        </Fade>)
+                    }
+                </ButtonGroup>
+            </Grid>
+            <Grid item >
+                <Typography variant='subtitle2' color='textSecondary' align='justify'>
+                    {about}
+                </Typography>
+            </Grid>
+            <Grid container item justifyContent='space-between' className={classes.contact} >
+                <Link color='textSecondary' variant='subtitle2' underline="hover"><EmailRounded />{email}</Link>
+                <Link color='textSecondary' variant='subtitle2' underline="hover"><CallRounded />+91 {phone}</Link>
+            </Grid>
+        </Grid>
     )
 }
 

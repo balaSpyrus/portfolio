@@ -10,7 +10,7 @@ const INITIAL_VALUE = {
     "avatarURL": '',
     "about": '',
     "social": {
-        "linkedInURL": '',
+        "linkedIn": '',
     },
     "contact": {
         "email": '',

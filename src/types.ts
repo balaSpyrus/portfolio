@@ -8,9 +8,9 @@ export interface ProfileContext {
         "avatarURL": string,
         "about": string,
         "social": {
-            "linkedInURL": string,
-            "facebookURL"?: string,
-            "instagramURL"?: string,
+            "linkedIn": string,
+            "facebook"?: string,
+            "instagram"?: string,
         },
         "contact": {
             "email": string,

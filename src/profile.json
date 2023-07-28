@@ -5,20 +5,21 @@
     "last": "Nagarajan"
   },
   "avatarURL": "/asserts/images/profile.png",
-  "about": "Creative Engineer offering 5 years of experience.Enthusiastic about developing forward thinking solutions to tomorrow's productivity problems. Resourceful and adaptable approach to challenges. Highly effective at developing new programs and fixing problems with existing systems.",
+  "about": "Dedicated and accomplished Software Engineer with over 7 years of experience in the IT industry, specializing in front-end heavy full-stack development using ReactJS, TypeScript, JavaScript, Java and web technologies. Proven track record of leading successful projects, collaborating with cross-functional teams, and delivering high-quality solutions. Passionate about mentoring and contributing to the growth of junior developers.",
   "social": {
-    "linkedInURL": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/",
-    "facebookURL": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/",
-    "instagramURL": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/"
+    "linkedIn": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/",
+    "facebook": "https://www.facebook.com/bala.spyrus",
+    "instagram": "https://www.instagram.com/bala_spyrus/"
   },
   "contact": {
     "email": "bbalax.bbalax@gmail.com",
-    "phone": "+91 9487680919"
+    "phone": "9487680919"
   },
   "main": {
     "work": [
       {
         "current": true,
+
         "designation": "Software Engineer - III"
       }
     ]

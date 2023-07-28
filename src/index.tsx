@@ -1,4 +1,4 @@
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { createTheme, ThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -6,11 +6,21 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme { }
+}
+
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <MuiThemeProvider theme={createMuiTheme()}>
-     <App />
-    </MuiThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={createTheme()}>
+        <App />
+      </ThemeProvider>
+    </StyledEngineProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
