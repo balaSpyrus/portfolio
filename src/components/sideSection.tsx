@@ -1,61 +1,45 @@
+import { AccountBoxRounded, CallRounded, EmailRounded, Facebook, Instagram, LinkedIn, WorkRounded } from '@mui/icons-material';
 import {
     Avatar,
     ButtonGroup,
+    Chip,
     Fade,
     Grid,
+    Grow,
     IconButton,
     Link,
+    Slide,
     Theme,
     Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { AccountBoxRounded, CallRounded, EmailRounded, Facebook, Instagram, LinkedIn, WorkRounded } from '@mui/icons-material';
-import React, { useContext, } from 'react';
-import { Profile } from '../context';
-import { useLayoutStyles } from '../App';
 import clsx from 'clsx';
-import { useTheme } from '@mui/material/styles';
+import { useContext, } from 'react';
+import { useLayoutStyles } from '../App';
+import { Profile } from '../context';
 
 const useStyles = makeStyles((theme: Theme) => ({
-    mainGrid: {
-        width: '100%',
-        position: 'relative',
-        overflow: 'hidden',
-        "&>*": {
-            color: theme.palette.common.white,
-            backgroundColor: theme.palette.secondary.light,
-            borderRadius: 5,
-            border: '2px solid white',
-            transition: '200ms all ease-in-out',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            "&:hover": {
-                backgroundColor: theme.palette.secondary.dark,
-                transition: '200ms all ease-in-out',
-            }
-        }
+    linkBtn: {
+        "&:hover": {
+            color: theme.palette.primary.dark
+        },
     },
     contact: {
         marginTop: 'auto',
-
-        "&>*": {
+        gap: theme.spacing(1),
+        "& a": {
             display: 'flex',
             alignItems: 'center',
             gap: theme.spacing(1),
-            paddingBottom: theme.spacing(1),
             "& svg": {
                 color: theme.palette.primary.main
             },
-            "&:last-child": {
-                paddingBottom: 0
-            }
         }
     },
     avatar: {
-        width: theme.spacing(18),
-        height: theme.spacing(18),
-        transition: '250ms all ease-in',
+        boxShadow: `0px 0px 10px ${theme.palette.grey['300']}`,
+        width: theme.spacing(20),
+        height: theme.spacing(20),
         margin: '0 auto',
     }
 }))
@@ -81,24 +65,24 @@ const SideSection = () => {
     const classes = useStyles();
     const layoutClasses = useLayoutStyles();
 
-    const theme = useTheme();
     const { profileData: {
-        name, main: { work }, avatarURL, social, about, contact: { email, phone }
+        name, main: { work }, avatarURL, social, about, contact: { email, phone }, skills
     }, setContent } = useContext(Profile)
 
-    const currCompany = work.find(({ current }) => current);
+    const currCompany = work.find(({ to }) => !to);
     const fullName = Object.values(name).join(' ').trim()
 
     return (
         <Grid container item className={clsx(layoutClasses.layout, layoutClasses.infoSection)} direction={'column'}>
             <Grid item >
-                <Avatar alt={name.first} src={avatarURL}
-                    className={classes.avatar} />
+                <Grow in={true} timeout={2000} >
+                    <Avatar alt={name.first} src={process.env.PUBLIC_URL + avatarURL} className={classes.avatar} />
+                </Grow>
             </Grid>
             <Grid item >
-                <Typography color='primary' variant='h6'>{fullName}</Typography>
+                <Typography color='primary' variant='h6' fontWeight={600}>{fullName}</Typography>
                 <Fade in={!!currCompany?.designation} unmountOnExit>
-                    <Typography color='textPrimary' variant='subtitle1'>{currCompany?.designation}</Typography>
+                    <Typography color='GrayText' variant='subtitle1' >{`${currCompany?.company}, ${currCompany?.designation}`}</Typography>
                 </Fade>
             </Grid>
             <Grid item >
@@ -106,12 +90,19 @@ const SideSection = () => {
                     {
                         Object.entries(social).map(([platform, url]) => <Fade in={!!url} unmountOnExit>
                             <IconButton
-                                href={url} target='_blank'
+                                href={url} target='_blank' className={classes.linkBtn}
                                 size="large">{getIcon(platform)}</IconButton>
                         </Fade>)
                     }
                 </ButtonGroup>
             </Grid>
+            <Slide direction='right' in={!!skills.length} timeout={2200} >
+                <Grid container item spacing={1} justifyContent='center'>
+                    {
+                        skills.map(each => (<Grid item><Chip label={each} variant="filled" color='success' size='small' /></Grid>))
+                    }
+                </Grid>
+            </Slide>
             <Grid item >
                 <Typography variant='subtitle2' color='textSecondary' align='justify'>
                     {about}

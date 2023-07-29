@@ -4,6 +4,7 @@
     "middle": "",
     "last": "Nagarajan"
   },
+  "skills":["TypeScript","JavaScript","Java","Node JS" ,"Express JS","HTML 5","CSS","SQL","Mongo DB","Spring Boot","Docker","React Native"],
   "avatarURL": "/asserts/images/profile.png",
   "about": "Dedicated and accomplished Software Engineer with over 7 years of experience in the IT industry, specializing in front-end heavy full-stack development using ReactJS, TypeScript, JavaScript, Java and web technologies. Proven track record of leading successful projects, collaborating with cross-functional teams, and delivering high-quality solutions. Passionate about mentoring and contributing to the growth of junior developers.",
   "social": {
@@ -18,9 +19,20 @@
   "main": {
     "work": [
       {
-        "current": true,
-
-        "designation": "Software Engineer - III"
+        "from":1590949800000,
+        "to":null,
+        "company":"Walmart Global Tech India",
+        "designation": "Software Engineer - III",
+        "workNotes":[
+          "Led front-end development for License & Permits Manager, delivering for 14 markets on an accelerated timeline.",
+        "Developed and maintained License & Permits Manager Tool, optimizing license procurement and renewal flow.",
+        "Utilized React JS, JavaScript, TypeScript, Node.js, Redux, and Saga to create an intuitive, efficient user interface.",
+        "Implemented Progressive Web App (PWA) concept, enhancing mobile usability and development efficiency.",
+        "Collaborated with cross-functional teams to gather requirements and implement user-friendly features.",
+        "Mentored junior developers, fostering a culture of continuous learning and growth.",
+        "Actively participated in design discussions and conducted code reviews for consistent code quality.",
+        "Developed robust, scalable, and API-centric infrastructures."
+      ]
       }
     ]
   }

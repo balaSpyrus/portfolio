@@ -2,22 +2,23 @@ import React from 'react';
 import { ProfileContext } from './types';
 
 
-const INITIAL_VALUE = {
-    "name": {
-        "first": '',
-        "last": '',
+const INITIAL_VALUE:ProfileContext['profileData'] = {
+    name: {
+        first: '',
+        last: '',
     },
-    "avatarURL": '',
-    "about": '',
-    "social": {
-        "linkedIn": '',
+    skills:[],
+    avatarURL: '',
+    about: '',
+    social: {
+        linkedIn: '',
     },
-    "contact": {
-        "email": '',
-        "phone": ''
+    contact: {
+        email: '',
+        phone: ''
     },
-    "main":{
-        "work": []
+    main:{
+        work: []
     }
 }
 

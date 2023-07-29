@@ -1,25 +1,29 @@
 export interface ProfileContext {
-    "profileData":{
-        "name": {
-            "first": string,
-            "middle"?: string,
-            "last": string,
+    profileData:{
+        name: {
+            first: string,
+            middle?: string,
+            last: string,
         },
-        "avatarURL": string,
-        "about": string,
-        "social": {
-            "linkedIn": string,
-            "facebook"?: string,
-            "instagram"?: string,
+        skills:string[],
+        avatarURL: string,
+        about: string,
+        social: {
+            linkedIn: string,
+            facebook?: string,
+            instagram?: string,
         },
-        "contact": {
-            "email": string,
-            "phone": string
+        contact: {
+            email: string,
+            phone: string
         },
-        "main":{
-            "work": {
-                "current": boolean,
-                "designation": string
+        main:{
+            work: {
+                from: number,
+                to:number | null,
+                company:string,
+                designation: string,
+                workNotes:string[]
             }[]
         }
     },
