@@ -75,7 +75,7 @@ const SideSection = () => {
     return (
         <Grid container item className={clsx(layoutClasses.layout, layoutClasses.infoSection)} direction={'column'}>
             <Grid item >
-                <Grow in={true} timeout={2000} >
+                <Grow in={true} timeout={1000} >
                     <Avatar alt={name.first} src={process.env.PUBLIC_URL + avatarURL} className={classes.avatar} />
                 </Grow>
             </Grid>
@@ -96,7 +96,7 @@ const SideSection = () => {
                     }
                 </ButtonGroup>
             </Grid>
-            <Slide direction='right' in={!!skills.length} timeout={2200} >
+            <Slide direction='right' in={!!skills.length} timeout={800} >
                 <Grid container item spacing={1} justifyContent='center'>
                     {
                         skills.map(each => (<Grid item><Chip label={each} variant="filled" color='success' size='small' /></Grid>))
