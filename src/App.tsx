@@ -6,20 +6,24 @@ import './App.scss';
 import SideSection from './components/sideSection';
 import { Profile } from './context';
 import profileData from './profile.json';
+import { ProfileContext } from './types';
+import ContentSection from './components/contentSection';
 
 export const useLayoutStyles = makeStyles((theme: Theme) => ({
   container: {
     background: '#e2e2e2',
     padding: theme.spacing(3),
     height: '100%',
-    overflow: 'hidden'
+    overflow: 'auto',
+    "& > *": {
+      height: '100%'
+    }
   },
   infoSection: {
     textAlign: 'center',
     height: '100%',
     padding: theme.spacing(2),
     alignContent: 'flex-start',
-    justifyContent: 'center'
   },
   contentSection: {
     [theme.breakpoints.up('sm')]: {
@@ -32,7 +36,10 @@ export const useLayoutStyles = makeStyles((theme: Theme) => ({
   layout: {
     borderRadius: theme.spacing(1 / 2),
     background: theme.palette.common.white,
-    gap: theme.spacing(2)
+    gap: theme.spacing(2),
+    overflow: 'auto',
+    height: '100%',
+    flexWrap: 'nowrap'
   }
 }))
 
@@ -40,7 +47,7 @@ function App() {
   const [selectedContent, setContent] = useState('');
   const classes = useLayoutStyles();
 
-  const contextValue = useMemo(() => ({ profileData, setContent }), [])
+  const contextValue = useMemo(() => ({ profileData: profileData as ProfileContext['profileData'], setContent }), [])
 
   return (
     <Profile.Provider value={contextValue}>
@@ -52,9 +59,7 @@ function App() {
         </Slide>
         <Slide direction='up' in={true} timeout={1000} mountOnEnter unmountOnExit>
           <Grid container item sm={9} >
-            <Grid container item className={clsx(classes.layout, classes.contentSection)}>
-
-            </Grid>
+            <ContentSection />
           </Grid>
         </Slide>
       </Grid>

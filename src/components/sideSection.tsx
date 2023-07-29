@@ -17,6 +17,7 @@ import clsx from 'clsx';
 import { useContext, } from 'react';
 import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
+import { sortBy } from 'lodash';
 
 const useStyles = makeStyles((theme: Theme) => ({
     linkBtn: {
@@ -67,7 +68,7 @@ const SideSection = () => {
 
     const { profileData: {
         name, main: { work }, avatarURL, social, about, contact: { email, phone }, skills
-    }, setContent } = useContext(Profile)
+    } } = useContext(Profile)
 
     const currCompany = work.find(({ to }) => !to);
     const fullName = Object.values(name).join(' ').trim()
@@ -96,10 +97,14 @@ const SideSection = () => {
                     }
                 </ButtonGroup>
             </Grid>
-            <Slide direction='right' in={!!skills.length} timeout={800} >
+            <Slide direction='right' in={!!skills.length} timeout={500} >
                 <Grid container item spacing={1} justifyContent='center'>
                     {
-                        skills.map(each => (<Grid item><Chip label={each} variant="filled" color='success' size='small' /></Grid>))
+                        sortBy(skills, 'level').reverse().map(({ name }, i) => (
+                            <Slide direction='right' in={true} timeout={100 + (i * 80)}>
+                                <Grid item><Chip label={name} variant="filled" color='success' size='small' /></Grid>
+                            </Slide>
+                        ))
                     }
                 </Grid>
             </Slide>
