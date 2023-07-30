@@ -1,13 +1,15 @@
-import { Box, Fade, Grid, List, ListItem, ListItemText, Slide, Typography } from '@mui/material';
-import clsx from 'clsx';
-import React, { useContext } from 'react';
-import { useLayoutStyles } from '../App';
-import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import { Box, Fade, Grid, List, ListItem, ListItemText, Slide, Theme, Typography } from '@mui/material';
+import Tab from '@mui/material/Tab';
+import makeStyles from '@mui/styles/makeStyles';
+import clsx from 'clsx';
+import { format, getYear } from 'date-fns';
+import { motion } from 'framer-motion';
+import React, { useContext } from 'react';
+import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
-import { Height } from '@mui/icons-material';
 
 const getLabel = (value: string) => {
     switch (value) {
@@ -18,14 +20,69 @@ const getLabel = (value: string) => {
     }
 };
 
-const ContentSection = () => {
+const useStyles = makeStyles((theme: Theme) => ({
+    tabPanel: {
+        height: `calc(100% - 100px)`,
+        "&>div": { padding: theme.spacing(2), height: '100%', overflow: 'auto', }
+    },
+    experience: {
+        [theme.breakpoints.up('sm')]: {
+            maxWidth: 350,
+            minWidth: 350,
+        },
+        [theme.breakpoints.down('sm')]: {
+            maxWidth: 390,
+            minWidth: 390,
+        },
+        padding: theme.spacing(2),
+        borderRadius: theme.spacing(1),
+        background: theme.palette.grey['300'],
+        boxShadow: `2px 2px 1px ${theme.palette.grey['600']}`,
+        height: '100%',
+        "& h5": {
+            fontWeight: 500
+        }
+    },
+    workDesc: {
+        margin: `0px -${theme.spacing(2)}`,
+        overflow: 'auto',
+        borderRadius: theme.spacing(0, 0, 1, 1),
+        border: `1px solid ${theme.palette.primary.light}`,
+        transform: `translateY(${theme.spacing(2)})`,
+        "& ul": {
+            background: theme.palette.primary.light,
+            padding: theme.spacing(2),
+            gap: theme.spacing(1),
+            display: 'flex',
+            flexDirection: 'column',
+            height: `calc(100% - ${theme.spacing(4)})`,
+            overflow: 'auto',
+        }
+    },
+    listItem: {
+        background: theme.palette.common.white,
+        borderRadius: 10,
+        transition: `200ms all ease-in-out`,
+        "&>div": {
+            textAlign: 'center',
+            color: theme.palette.primary.dark
+        }
+    }
+}))
+
+const getDate = (time: number) => `${format(new Date(time), 'LLLL')}, ${getYear(time)}`
+
+const ContentSection: React.FC = () => {
+    const classes = useStyles();
     const layoutClasses = useLayoutStyles();
-    const [value, setValue] = React.useState('work');
     const {
         profileData: { main },
     } = useContext(Profile);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+
+    const [value, setValue] = React.useState('work');
+
+    const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
 
@@ -34,72 +91,67 @@ const ContentSection = () => {
             <Grid item width={'100%'}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <TabList onChange={handleChange} aria-label="lab API tabs example" variant="fullWidth">
+                        <TabList onChange={handleChange} aria-label="profile tab" variant="fullWidth">
                             {Object.keys(main).map((each) => (
-                                <Tab label={getLabel(each)} value={each} />
+                                <Tab key={each} label={getLabel(each)} value={each} />
                             ))}
                         </TabList>
                     </Box>
-                    <TabPanel value="work" style={{ height: `calc(100% - 100px)` }}>
-                        <Grid container style={{ padding: 16, height: '100%', overflow: 'auto', flexDirection: 'column' }} columnGap={3} alignContent={'center'}>
+                    <TabPanel value="work" className={classes.tabPanel} >
+                        <Grid
+                            container
+                            justifyContent={'space-between'}
+                            wrap='nowrap'
+                            columnGap={3}>
                             {main.work.map(({ company, designation, from, to, workNotes }, i) => (
-                                <Slide in={true} direction="up" timeout={700 + (i * 300)}>
+                                <Slide in={true} direction="up" timeout={700 + i * 300} key={company}>
                                     <Grid
                                         container
                                         direction={'column'}
-                                        alignItems={'center'}
+                                        alignItems={'flex-start'}
                                         rowGap={1}
                                         item
-                                        sm={12}
-                                        md={6}
-                                        lg={3.5}
-                                        style={{
-                                            padding: 16,
-                                            borderRadius: 10,
-                                            background: 'lightgray',
-                                            boxShadow: '2px 2px 1px #959494',
-                                            height: '100%',
-                                            textAlign: 'center'
-                                        }}>
+                                        sm={12} className={classes.experience}>
                                         <Grid item flex={0}>
-                                            <Typography variant="subtitle1">{company}</Typography>
+                                            <Typography variant="h5" color={'primary'}>{company}</Typography>
                                         </Grid>
                                         <Grid item flex={0}>
                                             <Typography color={'GrayText'} variant="subtitle2">
                                                 {designation}
                                             </Typography>
                                             <Typography variant="subtitle2" color={'GrayText'}>
-                                                {`${new Date(from).toLocaleDateString()} - ${to ? new Date(to).toLocaleDateString() : 'Present'
+                                                {`${getDate(from)} - ${to ? getDate(to) : 'Present'
                                                     }`}
                                             </Typography>
                                         </Grid>
                                         <Fade in={!!workNotes.length} unmountOnExit>
-                                            <Grid item flex={2} style={{
-                                                margin: '0px -16px', overflow: 'auto',
-                                                borderRadius: '0 0 10px 10px',
-                                                transform: 'translateY(16px)'
-                                            }}>
-                                                <List
-                                                    style={{
-                                                        background: 'lightblue',
-                                                        padding: 16,
-                                                        gap: 8,
-                                                        display: 'flex',
-                                                        flexDirection: 'column',
-                                                        height: 'calc(100% - 16px)',
-                                                        overflow: 'auto',
-                                                    }}>
-                                                    {workNotes.map((each) => (
-                                                        <ListItem style={{
+                                            <Grid
+                                                item
+                                                flex={1} className={classes.workDesc} >
+                                                <List>
+                                                    {workNotes.map((each, i) => (
+                                                        <ListItem key={each} className={classes.listItem} component={motion.li}
+                                                            whileHover={{
+                                                                scale: 0.95,
+                                                            }}
+                                                            whileTap={{
+                                                                scale: 0.95,
 
-                                                            background: 'yellow',
-                                                            borderRadius: 10
-                                                        }}>
+                                                            }}
+
+                                                            initial={{ opacity: 0 }}
+                                                            animate={{ opacity: 1 }}
+                                                            transition={{
+                                                                opacity: {
+                                                                    duration: 0.5 + (i * 0.5)
+                                                                },
+                                                                scale: { duration: 0.05 }
+                                                            }}
+                                                        >
                                                             <ListItemText
                                                                 primary={each}
-                                                                style={{ textAlign: 'center' }}
                                                                 primaryTypographyProps={{
-                                                                    fontSize: 14,
+                                                                    fontSize: '0.875rem',
                                                                 }}
                                                             />
                                                         </ListItem>
@@ -112,9 +164,9 @@ const ContentSection = () => {
                             ))}
                         </Grid>
                     </TabPanel>
-                </TabContext >
-            </Grid >
-        </Grid >
+                </TabContext>
+            </Grid>
+        </Grid>
     );
 };
 

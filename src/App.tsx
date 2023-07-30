@@ -1,13 +1,11 @@
 import { Grid, Slide, Theme } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import clsx from 'clsx';
-import React, { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.scss';
+import ContentSection from './components/contentSection';
 import SideSection from './components/sideSection';
 import { Profile } from './context';
-import profileData from './profile.json';
 import { ProfileContext } from './types';
-import ContentSection from './components/contentSection';
 
 export const useLayoutStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -44,13 +42,29 @@ export const useLayoutStyles = makeStyles((theme: Theme) => ({
 }))
 
 function App() {
-  const [selectedContent, setContent] = useState('');
   const classes = useLayoutStyles();
 
-  const contextValue = useMemo(() => ({ profileData: profileData as ProfileContext['profileData'], setContent }), [])
+  const [profileData, setProfileData] = useState<ProfileContext['profileData']>();
+
+  const getProfile = async () => {
+    fetch('profile.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    }).then(data => data.json()).then(data => setProfileData(data as ProfileContext['profileData']))
+  }
+
+  useEffect(() => {
+    getProfile();
+  }, [])
+
+  if (!profileData) {
+    return <>Loading</>
+  }
 
   return (
-    <Profile.Provider value={contextValue}>
+    <Profile.Provider value={{ profileData }}>
       <Grid container className={classes.container}>
         <Slide direction='right' in={true} timeout={800} mountOnEnter unmountOnExit>
           <Grid item sm={3}>

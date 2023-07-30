@@ -1,13 +1,12 @@
 import React from 'react';
 import { ProfileContext } from './types';
 
-
-const INITIAL_VALUE:ProfileContext['profileData'] = {
+const INITIAL_VALUE: ProfileContext['profileData'] = {
     name: {
         first: '',
         last: '',
     },
-    skills:[],
+    skills: [],
     avatarURL: '',
     about: '',
     social: {
@@ -15,14 +14,13 @@ const INITIAL_VALUE:ProfileContext['profileData'] = {
     },
     contact: {
         email: '',
-        phone: ''
+        phone: '',
     },
-    main:{
-        work: []
-    }
-}
+    main: {
+        work: [],
+    },
+};
 
 export const Profile = React.createContext<ProfileContext>({
-    profileData : INITIAL_VALUE,
-    setContent : ()=>{}
+    profileData: INITIAL_VALUE,
 });
