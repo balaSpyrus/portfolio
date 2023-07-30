@@ -23,7 +23,7 @@ const getLabel = (value: string) => {
 const useStyles = makeStyles((theme: Theme) => ({
     tabPanel: {
         height: `calc(100% - 100px)`,
-        "&>div": { padding: theme.spacing(2), height: '100%', overflow: 'auto', }
+        '&>div': { padding: theme.spacing(2), height: '100%', overflow: 'auto' },
     },
     experience: {
         [theme.breakpoints.up('sm')]: {
@@ -39,9 +39,9 @@ const useStyles = makeStyles((theme: Theme) => ({
         background: theme.palette.grey['300'],
         boxShadow: `2px 2px 1px ${theme.palette.grey['600']}`,
         height: '100%',
-        "& h5": {
-            fontWeight: 500
-        }
+        '& h5': {
+            fontWeight: 500,
+        },
     },
     workDesc: {
         margin: `0px -${theme.spacing(2)}`,
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         borderRadius: theme.spacing(0, 0, 1, 1),
         border: `1px solid ${theme.palette.primary.light}`,
         transform: `translateY(${theme.spacing(2)})`,
-        "& ul": {
+        '& ul': {
             background: theme.palette.primary.light,
             padding: theme.spacing(2),
             gap: theme.spacing(1),
@@ -57,20 +57,20 @@ const useStyles = makeStyles((theme: Theme) => ({
             flexDirection: 'column',
             height: `calc(100% - ${theme.spacing(4)})`,
             overflow: 'auto',
-        }
+        },
     },
     listItem: {
         background: theme.palette.common.white,
         borderRadius: 10,
         transition: `200ms all ease-in-out`,
-        "&>div": {
+        '&>div': {
             textAlign: 'center',
-            color: theme.palette.primary.dark
-        }
-    }
-}))
+            color: theme.palette.primary.dark,
+        },
+    },
+}));
 
-const getDate = (time: number) => `${format(new Date(time), 'LLLL')}, ${getYear(time)}`
+const getDate = (time: number) => `${format(new Date(time), 'LLLL')}, ${getYear(time)}`;
 
 const ContentSection: React.FC = () => {
     const classes = useStyles();
@@ -78,7 +78,6 @@ const ContentSection: React.FC = () => {
     const {
         profileData: { main },
     } = useContext(Profile);
-
 
     const [value, setValue] = React.useState('work');
 
@@ -97,12 +96,8 @@ const ContentSection: React.FC = () => {
                             ))}
                         </TabList>
                     </Box>
-                    <TabPanel value="work" className={classes.tabPanel} >
-                        <Grid
-                            container
-                            justifyContent={'space-between'}
-                            wrap='nowrap'
-                            columnGap={3}>
+                    <TabPanel value="work" className={classes.tabPanel}>
+                        <Grid container justifyContent={'space-between'} wrap="nowrap" columnGap={3}>
                             {main.work.map(({ company, designation, from, to, workNotes }, i) => (
                                 <Slide in={true} direction="up" timeout={700 + i * 300} key={company}>
                                     <Grid
@@ -111,43 +106,43 @@ const ContentSection: React.FC = () => {
                                         alignItems={'flex-start'}
                                         rowGap={1}
                                         item
-                                        sm={12} className={classes.experience}>
+                                        sm={12}
+                                        className={classes.experience}>
                                         <Grid item flex={0}>
-                                            <Typography variant="h5" color={'primary'}>{company}</Typography>
+                                            <Typography variant="h5" color={'primary'}>
+                                                {company}
+                                            </Typography>
                                         </Grid>
                                         <Grid item flex={0}>
                                             <Typography color={'GrayText'} variant="subtitle2">
                                                 {designation}
                                             </Typography>
                                             <Typography variant="subtitle2" color={'GrayText'}>
-                                                {`${getDate(from)} - ${to ? getDate(to) : 'Present'
-                                                    }`}
+                                                {`${getDate(from)} - ${to ? getDate(to) : 'Present'}`}
                                             </Typography>
                                         </Grid>
                                         <Fade in={!!workNotes.length} unmountOnExit>
-                                            <Grid
-                                                item
-                                                flex={1} className={classes.workDesc} >
+                                            <Grid item flex={1} className={classes.workDesc}>
                                                 <List>
                                                     {workNotes.map((each, i) => (
-                                                        <ListItem key={each} className={classes.listItem} component={motion.li}
+                                                        <ListItem
+                                                            key={each}
+                                                            className={classes.listItem}
+                                                            component={motion.li}
                                                             whileHover={{
                                                                 scale: 0.95,
                                                             }}
                                                             whileTap={{
                                                                 scale: 0.95,
-
                                                             }}
-
                                                             initial={{ opacity: 0 }}
                                                             animate={{ opacity: 1 }}
                                                             transition={{
                                                                 opacity: {
-                                                                    duration: 0.5 + (i * 0.5)
+                                                                    duration: 0.5 + i * 0.5,
                                                                 },
-                                                                scale: { duration: 0.05 }
-                                                            }}
-                                                        >
+                                                                scale: { duration: 0.05 },
+                                                            }}>
                                                             <ListItemText
                                                                 primary={each}
                                                                 primaryTypographyProps={{

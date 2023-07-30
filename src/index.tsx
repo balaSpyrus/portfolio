@@ -5,24 +5,20 @@ import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-
-
 declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme { }
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface DefaultTheme extends Theme {}
 }
 
-
-
 ReactDOM.render(
-  <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={createTheme()}>
-        <App />
-      </ThemeProvider>
-    </StyledEngineProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={createTheme()}>
+                <App />
+            </ThemeProvider>
+        </StyledEngineProvider>
+    </React.StrictMode>,
+    document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
