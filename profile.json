@@ -58,7 +58,7 @@
             "level": 4
         }
     ],
-    "avatarURL": "/asserts/images/profile.png",
+    "avatarURL": "/asserts/images/profile2.png",
     "about": "Dedicated and accomplished Software Engineer with over 7 years of experience in the IT industry, specializing in front-end heavy full-stack development using ReactJS, TypeScript, JavaScript, Java and web technologies. Proven track record of leading successful projects, collaborating with cross-functional teams, and delivering high-quality solutions. Passionate about mentoring and contributing to the growth of junior developers.",
     "social": {
         "linkedIn": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/",
@@ -112,6 +112,11 @@
                     "Successfully delivered the project, streamlining warehouse management processes and enhancing overall efficiency"
                 ]
             }
-        ]
+        ],
+        "Education": null,
+        "Certifications": null,
+        "Accomplishments": null,
+        "Hobbies": null,
+        "Some Of My Works": null
     }
 }
