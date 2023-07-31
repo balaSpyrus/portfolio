@@ -1,11 +1,18 @@
 import { Grid, Slide, Theme } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import react, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.scss';
 import ContentSection from './components/contentSection';
 import SideSection from './components/sideSection';
 import { Profile } from './context';
 import { ProfileContext } from './types';
+import { motion } from 'framer-motion';
+
+const transition = {
+    type: 'spring',
+    bounce: 0.5,
+    duration: 1.3,
+};
 
 export const useLayoutStyles = makeStyles((theme: Theme) => ({
     container: {
@@ -68,16 +75,25 @@ function App() {
     return (
         <Profile.Provider value={{ profileData }}>
             <Grid container className={classes.container}>
-                <Slide direction="right" in={true} timeout={800} mountOnEnter unmountOnExit>
-                    <Grid item sm={3}>
-                        <SideSection />
-                    </Grid>
-                </Slide>
-                <Slide direction="up" in={true} timeout={1000} mountOnEnter unmountOnExit>
-                    <Grid container item sm={9}>
-                        <ContentSection />
-                    </Grid>
-                </Slide>
+                <Grid
+                    container
+                    sm={3}
+                    component={motion.div}
+                    initial={{ x: '-100%' }}
+                    animate={{ x: 0 }}
+                    transition={transition}>
+                    <SideSection />
+                </Grid>
+                <Grid
+                    container
+                    item
+                    sm={9}
+                    component={motion.div}
+                    initial={{ y: '100%' }}
+                    animate={{ y: 0 }}
+                    transition={transition}>
+                    <ContentSection />
+                </Grid>
             </Grid>
         </Profile.Provider>
     );

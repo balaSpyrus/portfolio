@@ -14,6 +14,7 @@ import { useContext } from 'react';
 import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
 import { sortBy } from 'lodash';
+import { motion } from 'framer-motion';
 
 const useStyles = makeStyles((theme: Theme) => ({
     linkBtn: {
@@ -94,13 +95,21 @@ const SideSection = () => {
             </Grid>
             <Grid item>
                 <ButtonGroup color="primary">
-                    {Object.entries(social).map(([platform, url]) => (
-                        <Fade in={!!url} unmountOnExit>
-                            <IconButton href={url} target="_blank" className={classes.linkBtn} size="large">
+                    {Object.entries(social).map(([platform, url]) =>
+                        url ? (
+                            <IconButton
+                                href={url}
+                                target="_blank"
+                                className={classes.linkBtn}
+                                size="large"
+                                component={motion.a}
+                                key={platform}>
                                 {getIcon(platform)}
                             </IconButton>
-                        </Fade>
-                    ))}
+                        ) : (
+                            <></>
+                        ),
+                    )}
                 </ButtonGroup>
             </Grid>
             <Slide direction="right" in={!!skills.length} timeout={500}>
@@ -108,11 +117,19 @@ const SideSection = () => {
                     {sortBy(skills, 'level')
                         .reverse()
                         .map(({ name }, i) => (
-                            <Slide direction="right" in={true} timeout={100 + i * 80}>
-                                <Grid item>
-                                    <Chip label={name} variant="filled" color="success" size="small" />
-                                </Grid>
-                            </Slide>
+                            <Grid
+                                item
+                                component={motion.div}
+                                initial={{ x: '-100%' }}
+                                animate={{ x: 0 }}
+                                key={name}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 1.1 }}
+                                transition={{
+                                    duration: 0.1 + i * 0.05,
+                                }}>
+                                <Chip label={name} variant="filled" color="success" size="small" />
+                            </Grid>
                         ))}
                 </Grid>
             </Slide>

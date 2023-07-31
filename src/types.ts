@@ -25,6 +25,7 @@ export interface ProfileContext {
                 designation: string;
                 workNotes: string[];
             }[];
+            [key: string]: any;
         };
     };
 }
