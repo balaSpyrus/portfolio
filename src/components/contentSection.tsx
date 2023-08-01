@@ -1,7 +1,7 @@
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Box, Grid, Theme } from '@mui/material';
+import { Box, Grid, Theme, useTheme } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
@@ -47,6 +47,8 @@ const ContentSection: React.FC = () => {
     const {
         profileData: { main },
     } = useContext(Profile);
+    const theme = useTheme<Theme>();
+    const isMobileScreen = theme.breakpoints.down('sm');
 
     const [value, setValue] = React.useState('work');
 
@@ -59,7 +61,8 @@ const ContentSection: React.FC = () => {
             <Grid item width={'100%'}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <TabList onChange={handleChange} aria-label="profile tab" variant="fullWidth">
+                        <TabList onChange={handleChange} aria-label="profile tab" variant={isMobileScreen ? "scrollable" : 'fullWidth'} scrollButtons
+                            allowScrollButtonsMobile>
                             {Object.keys(main).map((each) => (
                                 <Tab key={each} label={getLabel(each)} value={each} />
                             ))}
