@@ -9,16 +9,35 @@ import React, { useContext } from 'react';
 import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
 import WorkHistorySection from './workHistorySection';
+import WorkIcon from '@mui/icons-material/Work';
+import { ProfileContext } from '../types';
+import SchoolIcon from '@mui/icons-material/School';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import BuildIcon from '@mui/icons-material/Build';
 
-const getLabel = (value: string) => {
+type TabSectionType = keyof ProfileContext['profileData']['main'];
+
+const getLabel = (value: TabSectionType) => {
     switch (value) {
         case 'work':
-            return 'Work History';
+            return { label: 'Work History', icon: <WorkIcon /> };
+        case 'education':
+            return { label: 'Education', icon: <SchoolIcon /> };
+        case 'accomplishments':
+            return { label: 'Accomplishments', icon: <EmojiEventsIcon /> };
+        case 'certificates':
+            return { label: 'Certificates', icon: <WorkspacePremiumIcon /> };
+        case 'hobbies':
+            return { label: 'Hobbies', icon: <SportsEsportsIcon /> };
+        case 'someOfMyWorks':
+            return { label: 'Some of My Works', icon: <BuildIcon /> };
         default:
-            return value;
+            return { label: value, icon: <></> };
     }
 };
-const getComponent = (value: string) => {
+const getComponent = (value: TabSectionType) => {
     switch (value) {
         case 'work':
             return <WorkHistorySection />;
@@ -63,18 +82,17 @@ const ContentSection: React.FC = () => {
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList
                             onChange={handleChange}
-                            aria-label="profile tab"
                             variant={isMobileScreen ? 'scrollable' : 'fullWidth'}
                             scrollButtons
                             allowScrollButtonsMobile>
                             {Object.keys(main).map((each) => (
-                                <Tab key={each} label={getLabel(each)} value={each} />
+                                <Tab key={each} iconPosition='start' {...getLabel(each as TabSectionType)} value={each} />
                             ))}
                         </TabList>
                     </Box>
                     {Object.keys(main).map((each) => (
                         <TabPanel value={each} key={each} className={classes.tabPanel}>
-                            {getComponent(each)}
+                            {getComponent(each as TabSectionType)}
                         </TabPanel>
                     ))}
                 </TabContext>

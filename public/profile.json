@@ -113,10 +113,10 @@
                 ]
             }
         ],
-        "Education": null,
-        "Certifications": null,
-        "Accomplishments": null,
-        "Hobbies": null,
-        "Some Of My Works": null
+        "education":[],
+        "certificates":[],
+        "accomplishments":[],
+        "hobbies":[],
+        "someOfMyWorks":[]
     }
 }

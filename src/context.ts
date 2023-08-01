@@ -18,6 +18,11 @@ const INITIAL_VALUE: ProfileContext['profileData'] = {
     },
     main: {
         work: [],
+        education:[],
+        certificates:[],
+        accomplishments:[],
+        hobbies:[],
+        someOfMyWorks:[]
     },
 };
 
