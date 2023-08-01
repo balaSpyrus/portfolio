@@ -61,7 +61,11 @@ const ContentSection: React.FC = () => {
             <Grid item width={'100%'}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <TabList onChange={handleChange} aria-label="profile tab" variant={isMobileScreen ? "scrollable" : 'fullWidth'} scrollButtons
+                        <TabList
+                            onChange={handleChange}
+                            aria-label="profile tab"
+                            variant={isMobileScreen ? 'scrollable' : 'fullWidth'}
+                            scrollButtons
                             allowScrollButtonsMobile>
                             {Object.keys(main).map((each) => (
                                 <Tab key={each} label={getLabel(each)} value={each} />
