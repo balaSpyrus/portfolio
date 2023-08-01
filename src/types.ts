@@ -25,11 +25,11 @@ export interface ProfileContext {
                 designation: string;
                 workNotes: string[];
             }[];
-            education:[],
-            certificates:[],
-            accomplishments:[],
-            hobbies:[],
-            someOfMyWorks:[]
+            education: [];
+            certificates: [];
+            accomplishments: [];
+            hobbies: [];
+            someOfMyWorks: [];
         };
     };
 }

@@ -86,7 +86,12 @@ const ContentSection: React.FC = () => {
                             scrollButtons
                             allowScrollButtonsMobile>
                             {Object.keys(main).map((each) => (
-                                <Tab key={each} iconPosition='start' {...getLabel(each as TabSectionType)} value={each} />
+                                <Tab
+                                    key={each}
+                                    iconPosition="start"
+                                    {...getLabel(each as TabSectionType)}
+                                    value={each}
+                                />
                             ))}
                         </TabList>
                     </Box>
