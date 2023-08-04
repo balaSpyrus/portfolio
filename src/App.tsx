@@ -1,4 +1,4 @@
-import { Grid, Slide, Theme } from '@mui/material';
+import { CircularProgress, Grid, Theme } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { useEffect, useState } from 'react';
 import './App.scss';
@@ -69,7 +69,13 @@ function App() {
     }, []);
 
     if (!profileData) {
-        return <>Loading</>;
+        return (
+            <Grid container height={'100%'} alignItems={'center'} justifyContent={'center'}>
+                <Grid item>
+                    <CircularProgress size={'5rem'} />
+                </Grid>
+            </Grid>
+        );
     }
 
     return (

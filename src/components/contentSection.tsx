@@ -42,7 +42,7 @@ const getComponent = (value: TabSectionType) => {
         case 'work':
             return <WorkHistorySection />;
         default:
-            return <></>;
+            return <span>{value}</span>;
     }
 };
 
@@ -57,6 +57,10 @@ const useStyles = makeStyles((theme: Theme) => ({
                 flexDirection: 'column',
             },
         },
+    },
+    tab: {
+        minHeight: 50,
+        maxHeight: 50,
     },
 }));
 
@@ -91,6 +95,7 @@ const ContentSection: React.FC = () => {
                                     iconPosition="start"
                                     {...getLabel(each as TabSectionType)}
                                     value={each}
+                                    className={classes.tab}
                                 />
                             ))}
                         </TabList>

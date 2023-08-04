@@ -1,6 +1,6 @@
 import { createTheme, ThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -10,7 +10,9 @@ declare module '@mui/styles/defaultTheme' {
     interface DefaultTheme extends Theme {}
 }
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root') as Element);
+
+root.render(
     <React.StrictMode>
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={createTheme()}>
@@ -18,7 +20,6 @@ ReactDOM.render(
             </ThemeProvider>
         </StyledEngineProvider>
     </React.StrictMode>,
-    document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
