@@ -1,8 +1,8 @@
-import { Grid, Slide, Typography, Fade, List, ListItem, ListItemText, Theme } from '@mui/material';
-import { motion } from 'framer-motion';
-import React, { useContext } from 'react';
-import { Profile } from '../context';
+import { Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
+import { motion } from 'framer-motion';
+import { useContext } from 'react';
+import { Profile } from '../context';
 import { getDate } from '../utils';
 
 const useStyles = makeStyles((theme: Theme) => ({
