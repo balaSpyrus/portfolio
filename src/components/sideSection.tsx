@@ -15,12 +15,17 @@ import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
 import { sortBy } from 'lodash';
 import { motion } from 'framer-motion';
+import { getYear } from 'date-fns';
 
 const useStyles = makeStyles((theme: Theme) => ({
     linkBtn: {
         '&:hover': {
             color: theme.palette.primary.dark,
         },
+    },
+    logo: {
+        width: '1.5rem',
+        height: '1.5rem',
     },
     contact: {
         marginTop: 'auto',
@@ -64,6 +69,7 @@ const SideSection = () => {
     const {
         profileData: {
             name,
+            startDate,
             main: { work },
             avatarURL,
             social,
@@ -88,9 +94,28 @@ const SideSection = () => {
                     {fullName}
                 </Typography>
                 <Fade in={!!currCompany?.designation} unmountOnExit>
-                    <Typography
-                        color="GrayText"
-                        variant="subtitle1">{`${currCompany?.company}, ${currCompany?.designation}`}</Typography>
+                    <Grid container justifyContent={'center'}>
+                        <Grid container item justifyContent={'center'} gap={0.5}>
+                            <Grid item>
+                                <Avatar
+                                    variant="square"
+                                    className={classes.logo}
+                                    src={process.env.PUBLIC_URL + (currCompany?.logoURL ?? '')}
+                                    alt={currCompany?.company ?? ''}
+                                />
+                            </Grid>
+                            <Grid item>
+                                <Typography color="GrayText" variant="subtitle2">
+                                    {currCompany?.company}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid item>
+                            <Typography color="GrayText" variant="subtitle2">
+                                {currCompany?.designation}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                 </Fade>
             </Grid>
             <Grid item>
@@ -135,7 +160,7 @@ const SideSection = () => {
             </Slide>
             <Grid item>
                 <Typography variant="subtitle2" color="textSecondary" align="justify">
-                    {about}
+                    {about.replace('{{exp}}', `${getYear(Date.now()) - getYear(startDate)}`)}
                 </Typography>
             </Grid>
             <Grid container item justifyContent="space-between" className={classes.contact}>

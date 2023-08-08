@@ -6,6 +6,7 @@ const INITIAL_VALUE: ProfileContext['profileData'] = {
         first: '',
         last: '',
     },
+    startDate: 0,
     skills: [],
     avatarURL: '',
     about: '',

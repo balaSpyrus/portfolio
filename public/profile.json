@@ -58,8 +58,9 @@
             "level": 4
         }
     ],
+    "startDate": 1467225000000,
     "avatarURL": "/asserts/images/profile2.png",
-    "about": "Dedicated and accomplished Software Engineer with over 7 years of experience in the IT industry, specializing in front-end heavy full-stack development using ReactJS, TypeScript, JavaScript, Java and web technologies. Proven track record of leading successful projects, collaborating with cross-functional teams, and delivering high-quality solutions. Passionate about mentoring and contributing to the growth of junior developers.",
+    "about": "Dedicated and accomplished Software Engineer with over {{exp}} years of experience in the IT industry, specializing in front-end heavy full-stack development using ReactJS, TypeScript, JavaScript, Java and web technologies. Proven track record of leading successful projects, collaborating with cross-functional teams, and delivering high-quality solutions. Passionate about mentoring and contributing to the growth of junior developers.",
     "social": {
         "linkedIn": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/",
         "facebook": "https://www.facebook.com/bala.spyrus",
@@ -72,10 +73,19 @@
     "main": {
         "work": [
             {
+                "from": 1659378600000,
+                "to": null,
+                "company": "FreshWorks",
+                "designation": "Lead Software Engineer",
+                "logoURL": "/asserts/images/logos/freshworks.png",
+                "workNotes": []
+            },
+            {
                 "from": 1590949800000,
                 "to": 1659378600000,
                 "company": "Walmart Global Tech India",
                 "designation": "Software Engineer - III",
+                "logoURL": "/asserts/images/logos/walmart.png",
                 "workNotes": [
                     "Led front-end development for License & Permits Manager, delivering the product for 14 markets within a short span of time",
                     "Developed and maintained a License & Permits Manager Tool used to define user flow for license procurement and renewal across various facilities and products",
@@ -93,6 +103,7 @@
                 "to": 1588271400000,
                 "company": "MSYS Technologies",
                 "designation": "Senior Software Engineer",
+                "logoURL": "/asserts/images/logos/msys.png",
                 "workNotes": [
                     "Created an intuitive interface for customers to manage volumes, arrays, and visualize hardware status using ReactJS for front-end development and JAVA for back-end, ensuring a seamless full-stack experience",
                     "Collaborated with a storage client, delivering custom features to meet specific needs and enhancing the existing application",
@@ -105,6 +116,7 @@
                 "to": 1525113000000,
                 "company": "Wipro",
                 "designation": "Project Engineer",
+                "logoURL": "/asserts/images/logos/wipro.png",
                 "workNotes": [
                     "Spearheaded a project for a leading retail customer, optimizing warehouse operations using application in an Android Scanner gun",
                     "Modernized PLSQL Oracle forms to cutting-edge technologies, employing ReactJS, Spring Boot, and Oracle SQL as the tech stack",

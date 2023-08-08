@@ -1,4 +1,4 @@
-import { Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
+import { Avatar, Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
@@ -7,9 +7,13 @@ import { getDate } from '../utils';
 
 const useStyles = makeStyles((theme: Theme) => ({
     experience: {
-        [theme.breakpoints.up('sm')]: {
-            maxWidth: 350,
-            minWidth: 350,
+        [theme.breakpoints.down('xl')]: {
+            maxWidth: 'calc(33.33% - 16px)',
+            minWidth: 'calc(33.33% - 16px)',
+        },
+        [theme.breakpoints.down('lg')]: {
+            maxWidth: 'calc(50% - 16px)',
+            minWidth: 'calc(50% - 16px)',
         },
         [theme.breakpoints.down('sm')]: {
             maxWidth: 'unset',
@@ -19,10 +23,17 @@ const useStyles = makeStyles((theme: Theme) => ({
         borderRadius: theme.spacing(1),
         background: theme.palette.grey['300'],
         boxShadow: `2px 2px 1px ${theme.palette.grey['600']}`,
+        overflow: 'hidden',
         height: '100%',
         '& h5': {
             fontWeight: 500,
         },
+    },
+    logo: {
+        width: '15rem',
+        height: `15rem`,
+        position: 'absolute',
+        opacity: 0.125,
     },
     workDesc: {
         margin: `0px -${theme.spacing(2)}`,
@@ -62,14 +73,14 @@ const WorkHistorySection = () => {
 
     return (
         <Grid container justifyContent={'space-between'} wrap="nowrap" gap={3}>
-            {work.map(({ company, designation, from, to, workNotes }, i) => (
+            {work.map(({ company, designation, from, to, workNotes, logoURL = '' }, i) => (
                 <Grid
                     key={company}
                     component={motion.div}
                     initial={{ y: '200%' }}
                     animate={{ y: 0 }}
                     transition={{
-                        duration: 0.5 + i * 0.5,
+                        duration: 0.5 + i * 0.25,
                     }}
                     container
                     direction={'column'}
@@ -78,6 +89,17 @@ const WorkHistorySection = () => {
                     item
                     sm={12}
                     className={classes.experience}>
+                    <Avatar
+                        component={motion.div}
+                        animate={{ x: [-50, 0, 0, -50], y: [0, 0, 50, 0], scale: [1.5, 2] }}
+                        transition={{
+                            duration: 60,
+                            repeat: Infinity,
+                        }}
+                        className={classes.logo}
+                        src={process.env.PUBLIC_URL + logoURL}
+                        alt={company}
+                    />
                     <Grid item flex={0}>
                         <Typography variant="h5" color={'primary'}>
                             {company}

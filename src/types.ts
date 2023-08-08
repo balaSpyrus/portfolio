@@ -5,6 +5,7 @@ export interface ProfileContext {
             middle?: string;
             last: string;
         };
+        startDate: number;
         skills: { name: string; level: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 }[];
         avatarURL: string;
         about: string;
@@ -24,6 +25,7 @@ export interface ProfileContext {
                 company: string;
                 designation: string;
                 workNotes: string[];
+                logoURL?: string;
             }[];
             education: [];
             certificates: [];
