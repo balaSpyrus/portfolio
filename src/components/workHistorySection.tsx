@@ -18,6 +18,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         [theme.breakpoints.down('sm')]: {
             maxWidth: 'unset',
             minWidth: 'unset',
+            height: '40%',
+            marginBottom: theme.spacing(2),
         },
         padding: theme.spacing(2),
         borderRadius: theme.spacing(1),

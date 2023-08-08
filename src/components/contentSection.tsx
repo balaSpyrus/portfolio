@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) => ({
             height: '100%',
             overflow: 'auto',
             [theme.breakpoints.down('sm')]: {
-                flexDirection: 'column',
+                display: 'block',
             },
         },
     },
