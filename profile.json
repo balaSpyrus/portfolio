@@ -75,17 +75,17 @@
             {
                 "from": 1659378600000,
                 "to": null,
-                "company": "Freshworks",
+                "name": "Freshworks",
                 "designation": "Lead Software Engineer",
-                "logoURL": "/asserts/images/logos/freshworks.png",
+                "imageURL": "/asserts/images/logos/freshworks.png",
                 "workNotes": []
             },
             {
                 "from": 1590949800000,
                 "to": 1659378600000,
-                "company": "Walmart Global Tech India",
+                "name": "Walmart Global Tech India",
                 "designation": "Software Engineer - III",
-                "logoURL": "/asserts/images/logos/walmart.png",
+                "imageURL": "/asserts/images/logos/walmart.png",
                 "workNotes": [
                     "Led front-end development for License & Permits Manager, delivering the product for 14 markets within a short span of time",
                     "Developed and maintained a License & Permits Manager Tool used to define user flow for license procurement and renewal across various facilities and products",
@@ -101,9 +101,9 @@
             {
                 "from": 1525113000000,
                 "to": 1588271400000,
-                "company": "MSYS Technologies",
+                "name": "MSYS Technologies",
                 "designation": "Senior Software Engineer",
-                "logoURL": "/asserts/images/logos/msys.png",
+                "imageURL": "/asserts/images/logos/msys.png",
                 "workNotes": [
                     "Created an intuitive interface for customers to manage volumes, arrays, and visualize hardware status using ReactJS for front-end development and JAVA for back-end, ensuring a seamless full-stack experience",
                     "Collaborated with a storage client, delivering custom features to meet specific needs and enhancing the existing application",
@@ -114,9 +114,9 @@
             {
                 "from": 1464719400000,
                 "to": 1525113000000,
-                "company": "Wipro",
+                "name": "Wipro",
                 "designation": "Project Engineer",
-                "logoURL": "/asserts/images/logos/wipro.png",
+                "imageURL": "/asserts/images/logos/wipro.png",
                 "workNotes": [
                     "Spearheaded a project for a leading retail customer, optimizing warehouse operations using application in an Android Scanner gun",
                     "Modernized PLSQL Oracle forms to cutting-edge technologies, employing ReactJS, Spring Boot, and Oracle SQL as the tech stack",
@@ -125,7 +125,35 @@
                 ]
             }
         ],
-        "education": [],
+        "education": [
+            {
+                "from": 0,
+                "to": 0,
+                "name": "Karpagam college of Engineering",
+                "type": "UG",
+                "secured": 7.87,
+                "grade": "CGPA",
+                "notes": []
+            },
+            {
+                "from": 0,
+                "to": 0,
+                "name": "St Xavier's Higher Secondary School",
+                "type": "12th",
+                "secured": 69.3,
+                "grade": "%",
+                "notes": []
+            },
+            {
+                "from": 0,
+                "to": 0,
+                "name": "C.M Higher Secondary School",
+                "type": "10th",
+                "secured": 90,
+                "grade": "%",
+                "notes": []
+            }
+        ],
         "certificates": [],
         "accomplishments": [],
         "hobbies": [],
