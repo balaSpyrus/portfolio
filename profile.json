@@ -59,7 +59,7 @@
         }
     ],
     "startDate": 1467225000000,
-    "avatarURL": "/asserts/images/profile2.png",
+    "avatarURL": "/asserts/images/profile.png",
     "about": "Dedicated and accomplished Software Engineer with over {{exp}} years of experience in the IT industry, specializing in front-end heavy full-stack development using ReactJS, TypeScript, JavaScript, Java and web technologies. Proven track record of leading successful projects, collaborating with cross-functional teams, and delivering high-quality solutions. Passionate about mentoring and contributing to the growth of junior developers.",
     "social": {
         "linkedIn": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/",
@@ -75,7 +75,7 @@
             {
                 "from": 1659378600000,
                 "to": null,
-                "company": "FreshWorks",
+                "company": "Freshworks",
                 "designation": "Lead Software Engineer",
                 "logoURL": "/asserts/images/logos/freshworks.png",
                 "workNotes": []
