@@ -18,6 +18,7 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import BuildIcon from '@mui/icons-material/Build';
 
 type TabSectionType = keyof ProfileContext['profileData']['main'];
+type TabSectionValue = ProfileContext['profileData']['main'][TabSectionType];
 
 const getLabel = (value: TabSectionType) => {
     switch (value) {
@@ -37,12 +38,12 @@ const getLabel = (value: TabSectionType) => {
             return { label: value, icon: <></> };
     }
 };
-const getComponent = (value: TabSectionType) => {
-    switch (value) {
+const getComponent = (key: TabSectionType, value: TabSectionValue) => {
+    switch (key) {
         case 'work':
-            return <WorkHistorySection />;
+            return <WorkHistorySection details={value} />;
         default:
-            return <span>{value}</span>;
+            return <pre>{JSON.stringify(value, null, 4)}</pre>;
     }
 };
 
@@ -102,7 +103,7 @@ const ContentSection: React.FC = () => {
                     </Box>
                     {Object.keys(main).map((each) => (
                         <TabPanel value={each} key={each} className={classes.tabPanel}>
-                            {getComponent(each as TabSectionType)}
+                            {getComponent(each as TabSectionType, main[each as TabSectionType])}
                         </TabPanel>
                     ))}
                 </TabContext>

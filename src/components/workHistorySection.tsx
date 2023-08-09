@@ -1,9 +1,12 @@
-import { Avatar, Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
+import { Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { motion } from 'framer-motion';
-import { useContext } from 'react';
-import { Profile } from '../context';
+import { ProfileContext } from '../types';
 import { getDate } from '../utils';
+
+interface Props {
+    details: ProfileContext['profileData']['main']['work'];
+}
 
 const useStyles = makeStyles((theme: Theme) => ({
     experience: {
@@ -35,7 +38,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: '15rem',
         height: `15rem`,
         position: 'absolute',
-        opacity: 0.125,
+        opacity: 0.15,
+        zIndex: -1,
     },
     workDesc: {
         margin: `0px -${theme.spacing(2)}`,
@@ -64,18 +68,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-const WorkHistorySection = () => {
+const WorkHistorySection: React.FC<Props> = ({ details }) => {
     const classes = useStyles();
-
-    const {
-        profileData: {
-            main: { work },
-        },
-    } = useContext(Profile);
 
     return (
         <Grid container justifyContent={'space-between'} wrap="nowrap" gap={3}>
-            {work.map(({ company, designation, from, to, workNotes, logoURL = '' }, i) => (
+            {details.map(({ company, designation, from, to, workNotes, logoURL = '' }, i) => (
                 <Grid
                     key={company}
                     component={motion.div}
@@ -91,9 +89,8 @@ const WorkHistorySection = () => {
                     item
                     sm={12}
                     className={classes.experience}>
-                    <Avatar
-                        component={motion.div}
-                        animate={{ x: [-50, 0, 0, -50], y: [0, 0, 50, 0], scale: [1.5, 2] }}
+                    <motion.img
+                        animate={{ x: [-50, 0, 0, -50], y: [0, 0, -150, 0], scale: [1.75, 2, 2, 1.75] }}
                         transition={{
                             duration: 60,
                             repeat: Infinity,
