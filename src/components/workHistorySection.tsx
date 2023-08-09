@@ -1,11 +1,11 @@
 import { Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { motion } from 'framer-motion';
-import { ProfileContext } from '../types';
+import { WorkType } from '../types';
 import { getDate } from '../utils';
 
 interface Props {
-    details: ProfileContext['profileData']['main']['work'];
+    details: WorkType[];
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -73,7 +73,7 @@ const WorkHistorySection: React.FC<Props> = ({ details }) => {
 
     return (
         <Grid container justifyContent={'space-between'} wrap="nowrap" gap={3}>
-            {details.map(({ company, designation, from, to, workNotes, logoURL = '' }, i) => (
+            {details.map(({ name: company, designation, from, to, workNotes, imageURL: logoURL = '' }, i) => (
                 <Grid
                     key={company}
                     component={motion.div}

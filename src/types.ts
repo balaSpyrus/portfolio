@@ -1,3 +1,22 @@
+export type SkillType = { name: string; level: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 };
+type GenericAttrType = {
+    from: number;
+    to: number | null;
+    name: string;
+    imageURL?: string;
+};
+export interface WorkType extends GenericAttrType {
+    designation: string;
+    workNotes: string[];
+}
+
+export interface EducationType extends NonNullable<GenericAttrType> {
+    type: 'PG' | 'UG' | '12th' | '10th';
+    secured: number;
+    grade: '%' | 'CGPA';
+    notes: string[];
+}
+
 export interface ProfileContext {
     profileData: {
         name: {
@@ -6,7 +25,7 @@ export interface ProfileContext {
             last: string;
         };
         startDate: number;
-        skills: { name: string; level: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 }[];
+        skills: SkillType[];
         avatarURL: string;
         about: string;
         social: {
@@ -19,15 +38,8 @@ export interface ProfileContext {
             phone: string;
         };
         main: {
-            work: {
-                from: number;
-                to: number | null;
-                company: string;
-                designation: string;
-                workNotes: string[];
-                logoURL?: string;
-            }[];
-            education: [];
+            work: WorkType[];
+            education: EducationType[];
             certificates: [];
             accomplishments: [];
             hobbies: [];

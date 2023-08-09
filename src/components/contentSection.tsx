@@ -10,12 +10,13 @@ import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
 import WorkHistorySection from './workHistorySection';
 import WorkIcon from '@mui/icons-material/Work';
-import { ProfileContext } from '../types';
+import { ProfileContext, WorkType } from '../types';
 import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import BuildIcon from '@mui/icons-material/Build';
+import * as colors from '@mui/material/colors';
 
 type TabSectionType = keyof ProfileContext['profileData']['main'];
 type TabSectionValue = ProfileContext['profileData']['main'][TabSectionType];
@@ -25,15 +26,15 @@ const getLabel = (value: TabSectionType) => {
         case 'work':
             return { label: 'Work History', icon: <WorkIcon /> };
         case 'education':
-            return { label: 'Education', icon: <SchoolIcon /> };
+            return { label: 'Education', icon: <SchoolIcon />, style: { color: colors.orange[500] } };
         case 'accomplishments':
-            return { label: 'Accomplishments', icon: <EmojiEventsIcon /> };
+            return { label: 'Accomplishments', icon: <EmojiEventsIcon />, style: { color: colors.red[500] } };
         case 'certificates':
-            return { label: 'Certificates', icon: <WorkspacePremiumIcon /> };
+            return { label: 'Certificates', icon: <WorkspacePremiumIcon />, style: { color: colors.green[500] } };
         case 'hobbies':
-            return { label: 'Hobbies', icon: <SportsEsportsIcon /> };
+            return { label: 'Hobbies', icon: <SportsEsportsIcon />, style: { color: colors.purple[500] } };
         case 'someOfMyWorks':
-            return { label: 'Some of My Works', icon: <BuildIcon /> };
+            return { label: 'Some of My Works', icon: <BuildIcon />, style: { color: colors.teal[500] } };
         default:
             return { label: value, icon: <></> };
     }
@@ -41,7 +42,7 @@ const getLabel = (value: TabSectionType) => {
 const getComponent = (key: TabSectionType, value: TabSectionValue) => {
     switch (key) {
         case 'work':
-            return <WorkHistorySection details={value} />;
+            return <WorkHistorySection details={value as WorkType[]} />;
         default:
             return <pre>{JSON.stringify(value, null, 4)}</pre>;
     }
@@ -66,7 +67,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const ContentSection: React.FC = () => {
-    const classes = useStyles();
     const layoutClasses = useLayoutStyles();
     const {
         profileData: { main },
@@ -74,10 +74,11 @@ const ContentSection: React.FC = () => {
     const theme = useTheme<Theme>();
     const isMobileScreen = theme.breakpoints.down('sm');
 
-    const [value, setValue] = React.useState('work');
+    const [value, setValue] = React.useState<TabSectionType>('work');
+    const classes = useStyles({ selected: value });
 
     const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
+        setValue(newValue as TabSectionType);
     };
 
     return (
@@ -86,19 +87,29 @@ const ContentSection: React.FC = () => {
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList
+                            TabIndicatorProps={{
+                                sx: {
+                                    backgroundColor: getLabel(value).style?.color ?? theme.palette.primary.main,
+                                },
+                            }}
                             onChange={handleChange}
                             variant={isMobileScreen ? 'scrollable' : 'fullWidth'}
                             scrollButtons
                             allowScrollButtonsMobile>
-                            {Object.keys(main).map((each) => (
-                                <Tab
-                                    key={each}
-                                    iconPosition="start"
-                                    {...getLabel(each as TabSectionType)}
-                                    value={each}
-                                    className={classes.tab}
-                                />
-                            ))}
+                            {Object.keys(main).map((each) => {
+                                const { style, ...restOptions } = getLabel(each as TabSectionType);
+
+                                return (
+                                    <Tab
+                                        {...restOptions}
+                                        key={each}
+                                        iconPosition="start"
+                                        style={each === value ? style : undefined}
+                                        value={each}
+                                        className={classes.tab}
+                                    />
+                                );
+                            })}
                         </TabList>
                     </Box>
                     {Object.keys(main).map((each) => (

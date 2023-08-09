@@ -7,15 +7,15 @@ import {
     LinkedIn,
     WorkRounded,
 } from '@mui/icons-material';
-import { Avatar, ButtonGroup, Chip, Fade, Grid, Grow, IconButton, Link, Slide, Theme, Typography } from '@mui/material';
+import { Avatar, ButtonGroup, Chip, Fade, Grid, Grow, IconButton, Link, Theme, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
+import { getYear } from 'date-fns';
+import { motion } from 'framer-motion';
+import { sortBy } from 'lodash';
 import { useContext } from 'react';
 import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
-import { sortBy } from 'lodash';
-import { motion } from 'framer-motion';
-import { getYear } from 'date-fns';
 
 const useStyles = makeStyles((theme: Theme) => ({
     linkBtn: {
@@ -100,13 +100,13 @@ const SideSection = () => {
                                 <Avatar
                                     variant="square"
                                     className={classes.logo}
-                                    src={process.env.PUBLIC_URL + (currCompany?.logoURL ?? '')}
-                                    alt={currCompany?.company ?? ''}
+                                    src={process.env.PUBLIC_URL + (currCompany?.imageURL ?? '')}
+                                    alt={currCompany?.name ?? ''}
                                 />
                             </Grid>
                             <Grid item>
                                 <Typography color="GrayText" variant="subtitle2">
-                                    {currCompany?.company}
+                                    {currCompany?.name}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -137,27 +137,23 @@ const SideSection = () => {
                     )}
                 </ButtonGroup>
             </Grid>
-            <Slide direction="right" in={!!skills.length} timeout={500}>
-                <Grid container item spacing={1} justifyContent="center">
-                    {sortBy(skills, 'level')
-                        .reverse()
-                        .map(({ name }, i) => (
-                            <Grid
-                                item
-                                component={motion.div}
-                                initial={{ x: '-100%' }}
-                                animate={{ x: 0 }}
-                                key={name}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 1.1 }}
-                                transition={{
-                                    duration: 0.1 + i * 0.05,
-                                }}>
-                                <Chip label={name} variant="filled" color="success" size="small" />
-                            </Grid>
-                        ))}
-                </Grid>
-            </Slide>
+            <Grid container item spacing={1} justifyContent="center">
+                {sortBy(skills, 'level')
+                    .reverse()
+                    .map(({ name }, i) => (
+                        <Grid
+                            item
+                            component={motion.div}
+                            initial={{ x: -500 }}
+                            animate={{ x: 0 }}
+                            key={name}
+                            transition={{
+                                duration: 0.25 + i * 0.05,
+                            }}>
+                            <Chip label={name} variant="filled" color="success" size="small" />
+                        </Grid>
+                    ))}
+            </Grid>
             <Grid item>
                 <Typography variant="subtitle2" color="textSecondary" align="justify">
                     {about.replace('{{exp}}', `${getYear(Date.now()) - getYear(startDate)}`)}
