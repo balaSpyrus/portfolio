@@ -12,7 +12,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 import { getYear } from 'date-fns';
 import { motion } from 'framer-motion';
-import { sortBy } from 'lodash';
+import sortBy from 'lodash/sortBy';
 import { useContext } from 'react';
 import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
@@ -24,8 +24,13 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
     },
     logo: {
-        width: '1.5rem',
-        height: '1.5rem',
+        width: '1rem',
+        height: '1rem',
+    },
+    skills: {
+        padding: theme.spacing(2),
+        borderRadius: theme.spacing(1 / 2),
+        background: theme.palette.grey[100],
     },
     contact: {
         marginTop: 'auto',
@@ -95,7 +100,7 @@ const SideSection = () => {
                 </Typography>
                 <Fade in={!!currCompany?.designation} unmountOnExit>
                     <Grid container justifyContent={'center'}>
-                        <Grid container item justifyContent={'center'} gap={0.5}>
+                        <Grid container item justifyContent={'center'} alignItems={'center'} gap={0.5}>
                             <Grid item>
                                 <Avatar
                                     variant="square"
@@ -137,7 +142,18 @@ const SideSection = () => {
                     )}
                 </ButtonGroup>
             </Grid>
-            <Grid container item spacing={1} justifyContent="center">
+            <Grid
+                container
+                item
+                gap={1}
+                justifyContent="center"
+                className={classes.skills}
+                component={motion.div}
+                initial={{ flex: 0 }}
+                exit={{ flex: 0 }}
+                whileTap={{
+                    flex: 3,
+                }}>
                 {sortBy(skills, 'level')
                     .reverse()
                     .map(({ name }, i) => (

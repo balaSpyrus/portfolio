@@ -45,6 +45,7 @@ export const useLayoutStyles = makeStyles((theme: Theme) => ({
         overflow: 'auto',
         height: '100%',
         flexWrap: 'nowrap',
+        position: 'relative',
     },
 }));
 
