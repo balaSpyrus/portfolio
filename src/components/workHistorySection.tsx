@@ -1,6 +1,6 @@
 import { Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { motion } from 'framer-motion';
+import { Variants, motion } from 'framer-motion';
 import { WorkType } from '../types';
 import { getDate } from '../utils';
 
@@ -68,20 +68,73 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
+const containerVariants = {
+    initial: {},
+    animate: {
+        transition: {
+            staggerChildren: 0.3,
+        },
+    },
+};
+
+const experienceVariants = {
+    initial: { y: '100vh' },
+    animate: {
+        y: 0,
+        transition: {
+            staggerChildren: 0.05,
+        },
+    },
+};
+
+const notesVariants: Variants = {
+    initial: { opacity: 0 },
+    animate: {
+        opacity: 1,
+        transition: {
+            scale: { duration: 0.05 },
+        },
+    },
+    gesture: {
+        scale: 0.95,
+    },
+};
+
+const imgVariants = {
+    initial: {
+        x: 0,
+        y: 0,
+        scale: 1,
+    },
+    animate: {
+        x: [-50, 0, 0, -50],
+        y: [0, 0, -150, 0],
+        scale: [1.75, 2, 2, 1.75],
+        transition: {
+            duration: 60,
+            repeat: Infinity,
+        },
+    },
+};
+
 const WorkHistorySection: React.FC<Props> = ({ details }) => {
     const classes = useStyles();
 
     return (
-        <Grid container justifyContent={'space-between'} wrap="nowrap" gap={3}>
+        <Grid
+            container
+            justifyContent={'space-between'}
+            wrap="nowrap"
+            gap={3}
+            variants={containerVariants}
+            component={motion.div}
+            initial="initial"
+            animate="animate">
             {details.map(({ name: company, designation, from, to, workNotes, imageURL: logoURL = '' }, i) => (
                 <Grid
                     key={company}
+                    variants={experienceVariants}
                     component={motion.div}
-                    initial={{ y: '200%' }}
-                    animate={{ y: 0 }}
-                    transition={{
-                        duration: 0.5 + i * 0.25,
-                    }}
                     container
                     direction={'column'}
                     alignItems={'flex-start'}
@@ -90,11 +143,7 @@ const WorkHistorySection: React.FC<Props> = ({ details }) => {
                     sm={12}
                     className={classes.experience}>
                     <motion.img
-                        animate={{ x: [-50, 0, 0, -50], y: [0, 0, -150, 0], scale: [1.75, 2, 2, 1.75] }}
-                        transition={{
-                            duration: 60,
-                            repeat: Infinity,
-                        }}
+                        variants={imgVariants}
                         className={classes.logo}
                         src={process.env.PUBLIC_URL + logoURL}
                         alt={company}
@@ -113,32 +162,16 @@ const WorkHistorySection: React.FC<Props> = ({ details }) => {
                         </Typography>
                     </Grid>
                     {workNotes.length ? (
-                        <Grid
-                            item
-                            flex={1}
-                            className={classes.workDesc}
-                            animate={{ opacity: 1 }}
-                            component={motion.div}>
+                        <Grid item flex={1} className={classes.workDesc}>
                             <List>
                                 {workNotes.map((each, i) => (
                                     <ListItem
                                         key={each}
+                                        variants={notesVariants}
                                         className={classes.listItem}
                                         component={motion.li}
-                                        whileHover={{
-                                            scale: 0.95,
-                                        }}
-                                        whileTap={{
-                                            scale: 0.95,
-                                        }}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{
-                                            opacity: {
-                                                duration: 0.5 + i * 0.5,
-                                            },
-                                            scale: { duration: 0.05 },
-                                        }}>
+                                        whileHover="gesture"
+                                        whileTap="gesture">
                                         <ListItemText
                                             primary={each}
                                             primaryTypographyProps={{

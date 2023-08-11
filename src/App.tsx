@@ -1,17 +1,27 @@
 import { CircularProgress, Grid, Theme } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
+import { Transition, Variants, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import './App.scss';
 import ContentSection from './components/contentSection';
 import SideSection from './components/sideSection';
 import { Profile } from './context';
 import { ProfileContext } from './types';
-import { motion } from 'framer-motion';
 
-const transition = {
+const transition: Transition = {
     type: 'spring',
-    bounce: 0.5,
-    duration: 1.3,
+    stiffness: 120,
+    duration: 1.5,
+};
+
+const layoutXVariants: Variants = {
+    hidden: { x: '-100vw' },
+    visible: { x: 0, transition },
+};
+
+const layoutYVariants: Variants = {
+    hidden: { y: '100vh' },
+    visible: { y: 0, transition },
 };
 
 export const useLayoutStyles = makeStyles((theme: Theme) => ({
@@ -86,9 +96,9 @@ function App() {
                     container
                     sm={3}
                     component={motion.div}
-                    initial={{ x: '-100%' }}
-                    animate={{ x: 0 }}
-                    transition={transition}>
+                    variants={layoutXVariants}
+                    initial="hidden"
+                    animate="visible">
                     <SideSection />
                 </Grid>
                 <Grid
@@ -96,9 +106,9 @@ function App() {
                     item
                     sm={9}
                     component={motion.div}
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0 }}
-                    transition={transition}>
+                    variants={layoutYVariants}
+                    initial="hidden"
+                    animate="visible">
                     <ContentSection />
                 </Grid>
             </Grid>

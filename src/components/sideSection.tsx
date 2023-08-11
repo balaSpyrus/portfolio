@@ -67,6 +67,19 @@ const getIcon = (key: string) => {
     }
 };
 
+const skillContainerVariants = {
+    initial: {},
+    animate: {
+        transition: {
+            staggerChildren: 0.1,
+        },
+    },
+};
+const skillVariants = {
+    initial: { x: '-100vw' },
+    animate: { x: 0 },
+};
+
 const SideSection = () => {
     const classes = useStyles();
     const layoutClasses = useLayoutStyles();
@@ -124,7 +137,7 @@ const SideSection = () => {
                 </Fade>
             </Grid>
             <Grid item>
-                <ButtonGroup color="primary">
+                <ButtonGroup color="primary" component={motion.div}>
                     {Object.entries(social).map(([platform, url]) =>
                         url ? (
                             <IconButton
@@ -149,23 +162,13 @@ const SideSection = () => {
                 justifyContent="center"
                 className={classes.skills}
                 component={motion.div}
-                initial={{ flex: 0 }}
-                exit={{ flex: 0 }}
-                whileTap={{
-                    flex: 3,
-                }}>
+                initial="initial"
+                animate="animate"
+                variants={skillContainerVariants}>
                 {sortBy(skills, 'level')
                     .reverse()
                     .map(({ name }, i) => (
-                        <Grid
-                            item
-                            component={motion.div}
-                            initial={{ x: -500 }}
-                            animate={{ x: 0 }}
-                            key={name}
-                            transition={{
-                                duration: 0.25 + i * 0.05,
-                            }}>
+                        <Grid item component={motion.div} variants={skillVariants} key={name}>
                             <Chip label={name} variant="filled" color="success" size="small" />
                         </Grid>
                     ))}
