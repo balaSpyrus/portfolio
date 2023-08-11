@@ -72,6 +72,7 @@ const skillContainerVariants = {
     animate: {
         transition: {
             staggerChildren: 0.1,
+            when: 'beforeChildren',
         },
     },
 };
@@ -162,8 +163,6 @@ const SideSection = () => {
                 justifyContent="center"
                 className={classes.skills}
                 component={motion.div}
-                initial="initial"
-                animate="animate"
                 variants={skillContainerVariants}>
                 {sortBy(skills, 'level')
                     .reverse()

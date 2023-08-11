@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: '15rem',
         height: `15rem`,
         position: 'absolute',
-        opacity: 0.15,
         zIndex: -1,
     },
     workDesc: {
@@ -47,6 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         borderRadius: theme.spacing(0, 0, 1, 1),
         border: `1px solid ${theme.palette.primary.light}`,
         transform: `translateY(${theme.spacing(2)})`,
+        width: `calc(100% + ${theme.spacing(4)})`,
         '& ul': {
             background: theme.palette.primary.light,
             padding: theme.spacing(2),
@@ -73,6 +73,7 @@ const containerVariants = {
     animate: {
         transition: {
             staggerChildren: 0.3,
+            when: 'beforeChildren',
         },
     },
 };
@@ -82,21 +83,21 @@ const experienceVariants = {
     animate: {
         y: 0,
         transition: {
-            staggerChildren: 0.05,
+            staggerChildren: 0.1,
         },
     },
 };
 
-const notesVariants: Variants = {
+const notesVariants = {
     initial: { opacity: 0 },
     animate: {
         opacity: 1,
-        transition: {
-            scale: { duration: 0.05 },
-        },
     },
     gesture: {
         scale: 0.95,
+        transition: {
+            scale: { duration: 0.05 },
+        },
     },
 };
 
@@ -105,13 +106,16 @@ const imgVariants = {
         x: 0,
         y: 0,
         scale: 1,
+        opacity: 0,
     },
     animate: {
+        opacity: 0.15,
         x: [-50, 0, 0, -50],
         y: [0, 0, -150, 0],
         scale: [1.75, 2, 2, 1.75],
         transition: {
             duration: 60,
+            opacity: { duration: 1 },
             repeat: Infinity,
         },
     },
@@ -127,9 +131,7 @@ const WorkHistorySection: React.FC<Props> = ({ details }) => {
             wrap="nowrap"
             gap={3}
             variants={containerVariants}
-            component={motion.div}
-            initial="initial"
-            animate="animate">
+            component={motion.div}>
             {details.map(({ name: company, designation, from, to, workNotes, imageURL: logoURL = '' }, i) => (
                 <Grid
                     key={company}
@@ -161,7 +163,7 @@ const WorkHistorySection: React.FC<Props> = ({ details }) => {
                             {`${getDate(from)} - ${to ? getDate(to) : 'Present'}`}
                         </Typography>
                     </Grid>
-                    {workNotes.length ? (
+                    {workNotes?.length ? (
                         <Grid item flex={1} className={classes.workDesc}>
                             <List>
                                 {workNotes.map((each, i) => (
@@ -170,8 +172,8 @@ const WorkHistorySection: React.FC<Props> = ({ details }) => {
                                         variants={notesVariants}
                                         className={classes.listItem}
                                         component={motion.li}
-                                        whileHover="gesture"
-                                        whileTap="gesture">
+                                        whileHover={notesVariants.gesture}
+                                        whileTap={notesVariants.gesture}>
                                         <ListItemText
                                             primary={each}
                                             primaryTypographyProps={{

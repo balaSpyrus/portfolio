@@ -11,17 +11,17 @@ import { ProfileContext } from './types';
 const transition: Transition = {
     type: 'spring',
     stiffness: 120,
-    duration: 1.5,
+    duration: 0.2,
 };
 
 const layoutXVariants: Variants = {
-    hidden: { x: '-100vw' },
-    visible: { x: 0, transition },
+    initial: { x: '-100vw' },
+    animate: { x: 0, transition },
 };
 
 const layoutYVariants: Variants = {
-    hidden: { y: '100vh' },
-    visible: { y: 0, transition },
+    initial: { y: '100vh' },
+    animate: { y: 0, transition },
 };
 
 export const useLayoutStyles = makeStyles((theme: Theme) => ({
@@ -97,8 +97,8 @@ function App() {
                     sm={3}
                     component={motion.div}
                     variants={layoutXVariants}
-                    initial="hidden"
-                    animate="visible">
+                    initial="initial"
+                    animate="animate">
                     <SideSection />
                 </Grid>
                 <Grid
@@ -107,8 +107,8 @@ function App() {
                     sm={9}
                     component={motion.div}
                     variants={layoutYVariants}
-                    initial="hidden"
-                    animate="visible">
+                    initial="initial"
+                    animate="animate">
                     <ContentSection />
                 </Grid>
             </Grid>
