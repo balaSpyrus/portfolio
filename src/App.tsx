@@ -11,7 +11,7 @@ import { ProfileContext } from './types';
 const transition: Transition = {
     type: 'spring',
     stiffness: 120,
-    duration: 0.2,
+    duration: 0.5,
 };
 
 const layoutXVariants: Variants = {

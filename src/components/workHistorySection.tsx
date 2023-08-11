@@ -1,6 +1,6 @@
 import { Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { Variants, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { WorkType } from '../types';
 import { getDate } from '../utils';
 

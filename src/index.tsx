@@ -1,14 +1,9 @@
-import { createTheme, ThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
+import { StyledEngineProvider, ThemeProvider, createTheme } from '@mui/material';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-
-declare module '@mui/styles/defaultTheme' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface DefaultTheme extends Theme {}
-}
 
 const root = createRoot(document.getElementById('root') as Element);
 
