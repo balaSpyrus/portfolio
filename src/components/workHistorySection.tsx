@@ -1,6 +1,6 @@
 import { Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { motion } from 'framer-motion';
+import { Variants, motion } from 'framer-motion';
 import { WorkType } from '../types';
 import { getDate } from '../utils';
 
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-const containerVariants = {
+const containerVariants: Variants = {
     initial: {},
     animate: {
         transition: {
@@ -78,7 +78,7 @@ const containerVariants = {
     },
 };
 
-const experienceVariants = {
+const experienceVariants: Variants = {
     initial: { y: '100vh' },
     animate: {
         y: 0,
