@@ -157,6 +157,115 @@
         "certificates": [],
         "accomplishments": [],
         "hobbies": [],
-        "someOfMyWorks": []
+        "someOfMyWorks": [
+            {
+                "imageURL": "/asserts/images/works/work1.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work2.jpg",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work3.jpg",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work4.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work5.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work6.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work7.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work8.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work9.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work10.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work11.jpg",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work12.jpg",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work13.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work14.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work15.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work16.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work17.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work18.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work19.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work20.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work21.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work22.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work23.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work24.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work25.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work26.png",
+                "name": "Photoshop Works"
+            },
+            {
+                "imageURL": "/asserts/images/works/work27.png",
+                "name": "Photoshop Works"
+            }
+        ]
     }
 }

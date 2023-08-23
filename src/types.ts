@@ -10,6 +10,10 @@ export interface WorkType extends GenericAttrType {
     workNotes: string[];
 }
 
+export interface WorksImgSetType extends Required<Pick<GenericAttrType, 'imageURL' | 'name'>> {
+    desc?: string;
+}
+
 export interface EducationType extends NonNullable<GenericAttrType> {
     type: 'PG' | 'UG' | '12th' | '10th';
     secured: number;
@@ -43,7 +47,7 @@ export interface ProfileContext {
             certificates: [];
             accomplishments: [];
             hobbies: [];
-            someOfMyWorks: [];
+            someOfMyWorks: WorksImgSetType[];
         };
     };
 }

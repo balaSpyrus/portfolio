@@ -10,13 +10,14 @@ import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
 import WorkHistorySection from './workHistorySection';
 import WorkIcon from '@mui/icons-material/Work';
-import { ProfileContext, WorkType } from '../types';
+import { ProfileContext, WorkType, WorksImgSetType } from '../types';
 import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import BuildIcon from '@mui/icons-material/Build';
 import * as colors from '@mui/material/colors';
+import WorksSection from './worksSection';
 
 type TabSectionType = keyof ProfileContext['profileData']['main'];
 type TabSectionValue = ProfileContext['profileData']['main'][TabSectionType];
@@ -43,6 +44,8 @@ const getComponent = (key: TabSectionType, value: TabSectionValue) => {
     switch (key) {
         case 'work':
             return <WorkHistorySection details={value as WorkType[]} />;
+        case 'someOfMyWorks':
+            return <WorksSection details={value as WorksImgSetType[]} />;
         default:
             return <pre>{JSON.stringify(value, null, 4)}</pre>;
     }

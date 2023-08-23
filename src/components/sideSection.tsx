@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         padding: theme.spacing(2),
         borderRadius: theme.spacing(1 / 2),
         background: theme.palette.grey[100],
+        overflow: 'hidden',
     },
     contact: {
         marginTop: 'auto',
