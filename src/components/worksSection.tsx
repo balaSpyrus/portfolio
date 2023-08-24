@@ -1,5 +1,5 @@
-import { Grid, ImageList, ImageListItem, ImageListItemBar, Theme } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Grid, ImageList, ImageListItem, ImageListItemBar, useMediaQuery, Theme } from '@mui/material';
+import { makeStyles, useTheme } from '@mui/styles';
 import { Variants, motion } from 'framer-motion';
 import React from 'react';
 import { WorksImgSetType } from '../types';
@@ -58,12 +58,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const WorksSection: React.FC<Props> = ({ details: imgSet }) => {
     const classes = useStyles();
+    const theme = useTheme<Theme>();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const isMobileScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
         <Grid style={{ padding: 0 }}>
             <ImageList
                 variant="masonry"
-                cols={3}
+                cols={isMobileScreen ? 1 : isSmallScreen ? 2 : 3}
                 gap={8}
                 sx={{ margin: 0 }}
                 component={motion.ul}

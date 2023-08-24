@@ -94,6 +94,7 @@ function App() {
             <Grid container className={classes.container}>
                 <Grid
                     container
+                    item
                     sm={3}
                     component={motion.div}
                     variants={layoutXVariants}

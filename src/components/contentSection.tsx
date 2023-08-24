@@ -1,7 +1,7 @@
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Box, Grid, Theme, useTheme } from '@mui/material';
+import { Box, Grid, Theme, useMediaQuery, useTheme } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
@@ -75,7 +75,7 @@ const ContentSection: React.FC = () => {
         profileData: { main },
     } = useContext(Profile);
     const theme = useTheme<Theme>();
-    const isMobileScreen = theme.breakpoints.down('sm');
+    const isMobileScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const [value, setValue] = React.useState<TabSectionType>('work');
     const classes = useStyles({ selected: value });
