@@ -27,7 +27,7 @@ export interface EducationType extends NonNullable<GenericAttrType> {
 
 export interface ProfileContext {
     fireBaseConfig?:{
-        app:FirebaseApp,analytics:Analytics,fireStore:Firestore
+       analytics:Analytics,fireStore:Firestore
     }
     profileData: {
         id:string,

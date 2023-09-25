@@ -10,6 +10,7 @@ import { ProfileContext } from './types';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { Firestore, addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
+import { connectionConfig } from './config';
 
 const transition: Transition = {
     type: 'spring',
@@ -104,20 +105,11 @@ function App() {
             .then((data) => setProfileData(data as ProfileContext['profileData']));
     };
 
-    const initializeFireBase = async () => {
-        fetch('fireBaseConfig.json', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-        })
-            .then((data) => data.json())
-            .then((firebaseConfig) => {
-                const app = initializeApp(firebaseConfig);
-                const analytics = getAnalytics(app);
-                const fireStore = getFirestore(app);
-                setFireBaseConfig({ app, analytics, fireStore });
-            });
+    const initializeFireBase = () => {
+        const app = initializeApp(connectionConfig);
+        const analytics = getAnalytics(app);
+        const fireStore = getFirestore(app);
+        setFireBaseConfig({ analytics, fireStore });
     };
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-{
+export const connectionConfig = {
     "apiKey": "AIzaSyBVgPk4gfbGThETi7YfNj5e-H-vFJtJZkw",
     "authDomain": "portfolio-spyrus.firebaseapp.com",
     "databaseURL": "https://portfolio-spyrus-default-rtdb.firebaseio.com",
