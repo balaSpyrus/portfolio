@@ -8,6 +8,7 @@ import {
     WorkRounded,
 } from '@mui/icons-material';
 import { Avatar, ButtonGroup, Chip, Fade, Grid, Grow, IconButton, Link, Theme, Typography } from '@mui/material';
+import * as colors from '@mui/material/colors';
 import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 import { getYear } from 'date-fns';
@@ -16,6 +17,20 @@ import sortBy from 'lodash/sortBy';
 import { useContext } from 'react';
 import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
+
+const SKILL_METER = {
+    0: colors.red[500],
+    1: colors.red[400],
+    2: colors.red[300],
+    3: colors.deepOrange[500],
+    4: colors.deepOrange[300],
+    5: colors.orange[500],
+    6: colors.lime[300],
+    7: colors.lime[500],
+    8: colors.green[300],
+    9: colors.green[400],
+    10: colors.green[500],
+};
 
 const useStyles = makeStyles((theme: Theme) => ({
     linkBtn: {
@@ -167,9 +182,16 @@ const SideSection = () => {
                 variants={skillContainerVariants}>
                 {sortBy(skills, 'level')
                     .reverse()
-                    .map(({ name }, i) => (
+                    .map(({ name, level }, i) => (
                         <Grid item component={motion.div} variants={skillVariants} key={name}>
-                            <Chip label={name} variant="filled" color="success" size="small" />
+                            <Chip
+                                label={name}
+                                variant="filled"
+                                sx={{
+                                    background: SKILL_METER[level],
+                                }}
+                                size="small"
+                            />
                         </Grid>
                     ))}
             </Grid>

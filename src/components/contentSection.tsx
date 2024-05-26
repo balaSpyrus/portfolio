@@ -18,6 +18,7 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import BuildIcon from '@mui/icons-material/Build';
 import * as colors from '@mui/material/colors';
 import WorksSection from './worksSection';
+import { sortBy } from 'lodash';
 
 type TabSectionType = keyof ProfileContext['profileData']['main'];
 type TabSectionValue = ProfileContext['profileData']['main'][TabSectionType];
@@ -84,6 +85,8 @@ const ContentSection: React.FC = () => {
         setValue(newValue as TabSectionType);
     };
 
+    const tabSections = sortBy(Object.keys(main).sort().reverse(), (key) => !main[key as TabSectionType].length);
+
     return (
         <Grid container item className={clsx(layoutClasses.layout, layoutClasses.contentSection)}>
             <Grid item width={'100%'}>
@@ -96,16 +99,17 @@ const ContentSection: React.FC = () => {
                                 },
                             }}
                             onChange={handleChange}
-                            variant={isMobileScreen ? 'scrollable' : 'fullWidth'}
-                            scrollButtons
+                            variant={'scrollable'}
+                            scrollButtons={isMobileScreen}
                             allowScrollButtonsMobile>
-                            {Object.keys(main).map((each) => {
+                            {tabSections.map((each) => {
                                 const { style, ...restOptions } = getLabel(each as TabSectionType);
 
                                 return (
                                     <Tab
                                         {...restOptions}
                                         key={each}
+                                        disabled={!main[each as TabSectionType].length}
                                         iconPosition="start"
                                         style={each === value ? style : undefined}
                                         value={each}
@@ -115,7 +119,7 @@ const ContentSection: React.FC = () => {
                             })}
                         </TabList>
                     </Box>
-                    {Object.keys(main).map((each) => (
+                    {tabSections.map((each) => (
                         <TabPanel value={each} key={each} className={classes.tabPanel}>
                             {getComponent(each as TabSectionType, main[each as TabSectionType])}
                         </TabPanel>

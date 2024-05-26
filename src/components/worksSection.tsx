@@ -1,8 +1,11 @@
-import { Grid, ImageList, ImageListItem, ImageListItemBar, useMediaQuery, Theme } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Grid, ImageList, ImageListItem, ImageListItemBar, Theme, Typography, useMediaQuery } from '@mui/material';
 import { makeStyles, useTheme } from '@mui/styles';
 import { Variants, motion } from 'framer-motion';
 import React from 'react';
 import { WorksImgSetType } from '../types';
+
+import { Accordion, AccordionDetails, AccordionSummary } from './common/accordian';
 
 interface Props {
     details: WorksImgSetType[];
@@ -36,6 +39,12 @@ const useStyles = makeStyles((theme: Theme) => ({
         height: '100%',
         display: 'block',
     },
+    iframe: {
+        width: '100%',
+        minHeight: '650px',
+        border: 'none',
+        outline: 'none',
+    },
     imgListItem: {
         cursor: 'pointer',
         '&:after': {
@@ -64,41 +73,65 @@ const WorksSection: React.FC<Props> = ({ details: imgSet }) => {
 
     return (
         <Grid style={{ padding: 0 }}>
-            <ImageList
-                variant="masonry"
-                cols={isMobileScreen ? 1 : isSmallScreen ? 2 : 3}
-                gap={8}
-                sx={{ margin: 0 }}
-                component={motion.ul}
-                variants={containerVariants}>
-                {imgSet.map(({ name, imageURL, desc }) => (
-                    <ImageListItem
-                        key={imageURL}
-                        className={classes.imgListItem}
-                        component={motion.li}
-                        variants={childrenVarients}
-                        sx={{
-                            '& > *': {
-                                borderRadius: 1,
-                            },
-                        }}>
-                        <motion.img
-                            className={classes.img}
-                            src={`${process.env.PUBLIC_URL + imageURL}?w=248&h=248&fit=crop&auto=format`}
-                            srcSet={`${process.env.PUBLIC_URL + imageURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                            alt={name}
-                            loading="lazy"
-                        />
-                        <ImageListItemBar
-                            position="bottom"
-                            sx={{
-                                background: 'rgb(0 0 0 / 70%)',
-                            }}
-                            title={`${name}${desc ? ` . ${desc}` : ''}`}
-                        />
-                    </ImageListItem>
-                ))}
-            </ImageList>
+            <Accordion defaultExpanded>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="website-content" id="website-header">
+                    <Typography>Personal website works</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography variant="caption">
+                        Link :{' '}
+                        <a href="https://balaspyrus.github.io/mocktrello/"> https://balaspyrus.github.io/mocktrello/</a>
+                    </Typography>
+
+                    <iframe
+                        className={classes.iframe}
+                        src="https://balaspyrus.github.io/mocktrello/"
+                        title="trello clone"
+                    />
+                </AccordionDetails>
+            </Accordion>
+            <Accordion defaultExpanded>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="photshop-content" id="photshop-header">
+                    <Typography>Photoshop Works</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <ImageList
+                        variant="masonry"
+                        cols={isMobileScreen ? 1 : isSmallScreen ? 2 : 3}
+                        gap={8}
+                        sx={{ margin: 0 }}
+                        component={motion.ul}
+                        variants={containerVariants}>
+                        {imgSet.map(({ name, imageURL, desc }) => (
+                            <ImageListItem
+                                key={imageURL}
+                                className={classes.imgListItem}
+                                component={motion.li}
+                                variants={childrenVarients}
+                                sx={{
+                                    '& > *': {
+                                        borderRadius: 1,
+                                    },
+                                }}>
+                                <motion.img
+                                    className={classes.img}
+                                    src={`${process.env.PUBLIC_URL + imageURL}?w=248&h=248&fit=crop&auto=format`}
+                                    srcSet={`${process.env.PUBLIC_URL + imageURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                    alt={name}
+                                    loading="lazy"
+                                />
+                                <ImageListItemBar
+                                    position="bottom"
+                                    sx={{
+                                        background: 'rgb(0 0 0 / 70%)',
+                                    }}
+                                    title={`${name}${desc ? ` . ${desc}` : ''}`}
+                                />
+                            </ImageListItem>
+                        ))}
+                    </ImageList>
+                </AccordionDetails>
+            </Accordion>
         </Grid>
     );
 };

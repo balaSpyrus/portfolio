@@ -1,5 +1,4 @@
 import { Analytics } from "firebase/analytics";
-import { FirebaseApp } from "firebase/app";
 import { Firestore } from "firebase/firestore";
 
 export type SkillType = { name: string; level: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 };
