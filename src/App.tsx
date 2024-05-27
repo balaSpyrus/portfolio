@@ -10,7 +10,7 @@ import { ProfileContext } from './types';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { Firestore, addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
-import { connectionConfig } from './config';
+import { FIREBASE_CONFIG } from './firebaseConfig';
 
 const transition: Transition = {
     type: 'spring',
@@ -106,7 +106,7 @@ function App() {
     };
 
     const initializeFireBase = () => {
-        const app = initializeApp(connectionConfig);
+        const app = initializeApp(FIREBASE_CONFIG);
         const analytics = getAnalytics(app);
         const fireStore = getFirestore(app);
         setFireBaseConfig({ analytics, fireStore });

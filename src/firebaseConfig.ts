@@ -1,4 +1,4 @@
-export const connectionConfig = {
+export const FIREBASE_CONFIG = Object.freeze({
     'apiKey': 'AIzaSyBVgPk4gfbGThETi7YfNj5e-H-vFJtJZkw',
     'authDomain': 'portfolio-spyrus.firebaseapp.com',
     'databaseURL': 'https://portfolio-spyrus-default-rtdb.firebaseio.com',
@@ -7,4 +7,4 @@ export const connectionConfig = {
     'messagingSenderId': '223186403961',
     'appId': '1:223186403961:web:9f05a6f1e9506147894aa8',
     'measurementId': 'G-XSDN3XBEJY',
-};
+});
