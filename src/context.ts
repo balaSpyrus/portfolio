@@ -2,7 +2,7 @@ import React from 'react';
 import { ProfileContext } from './types';
 
 const INITIAL_VALUE: ProfileContext['profileData'] = {
-    id:'1',
+    id: '1',
     name: {
         first: '',
         last: '',

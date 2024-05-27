@@ -1,5 +1,5 @@
-import { Analytics } from "firebase/analytics";
-import { Firestore } from "firebase/firestore";
+import { Analytics } from 'firebase/analytics';
+import { Firestore } from 'firebase/firestore';
 
 export type SkillType = { name: string; level: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 };
 type GenericAttrType = {
@@ -25,11 +25,12 @@ export interface EducationType extends NonNullable<GenericAttrType> {
 }
 
 export interface ProfileContext {
-    fireBaseConfig?:{
-       analytics:Analytics,fireStore:Firestore
-    }
+    fireBaseConfig?: {
+        analytics: Analytics;
+        fireStore: Firestore;
+    };
     profileData: {
-        id:string,
+        id: string;
         name: {
             first: string;
             middle?: string;
