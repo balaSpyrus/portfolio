@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme: Theme) => ({
         padding: theme.spacing(2),
         borderRadius: theme.spacing(1 / 2),
         background: theme.palette.grey[100],
-        overflow: 'hidden',
     },
     contact: {
         marginTop: 'auto',
@@ -175,30 +174,37 @@ const SideSection = () => {
             <Grid
                 container
                 item
-                gap={1}
-                justifyContent="center"
-                className={classes.skills}
-                component={motion.div}
-                variants={skillContainerVariants}>
-                {sortBy(skills, 'level')
-                    .reverse()
-                    .map(({ name, level }, i) => (
-                        <Grid item component={motion.div} variants={skillVariants} key={name}>
-                            <Chip
-                                label={name}
-                                variant="filled"
-                                sx={{
-                                    background: SKILL_METER[level],
-                                }}
-                                size="small"
-                            />
-                        </Grid>
-                    ))}
-            </Grid>
-            <Grid item>
-                <Typography variant="subtitle2" color="textSecondary" align="justify">
-                    {about.replace('{{exp}}', `${getYear(Date.now()) - getYear(startDate)}`)}
-                </Typography>
+                sx={{
+                    overflow: 'auto',
+                }}>
+                <Grid
+                    container
+                    item
+                    gap={1}
+                    justifyContent="center"
+                    className={classes.skills}
+                    component={motion.div}
+                    variants={skillContainerVariants}>
+                    {sortBy(skills, 'level')
+                        .reverse()
+                        .map(({ name, level }, i) => (
+                            <Grid item component={motion.div} variants={skillVariants} key={name}>
+                                <Chip
+                                    label={name}
+                                    variant="filled"
+                                    sx={{
+                                        background: SKILL_METER[level],
+                                    }}
+                                    size="small"
+                                />
+                            </Grid>
+                        ))}
+                </Grid>
+                <Grid item>
+                    <Typography variant="subtitle2" color="textSecondary" align="justify">
+                        {about.replace('{{exp}}', `${getYear(Date.now()) - getYear(startDate)}`)}
+                    </Typography>
+                </Grid>
             </Grid>
             <Grid container item justifyContent="space-between" className={classes.contact}>
                 <Link color="textSecondary" variant="subtitle2" underline="hover">
