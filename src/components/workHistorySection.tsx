@@ -1,11 +1,10 @@
+import { format, quality } from '@cloudinary/url-gen/actions/delivery';
+import { scale } from '@cloudinary/url-gen/actions/resize';
 import { Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Variants, motion } from 'framer-motion';
 import { WorkType } from '../types';
 import { getCloudinaryBuilder, getDate } from '../utils';
-import { format, quality } from '@cloudinary/url-gen/actions/delivery';
-import { scale, auto } from '@cloudinary/url-gen/actions/resize';
-import { QualityTypes } from '@cloudinary/url-gen/types/types';
 
 interface Props {
     details: WorkType[];
