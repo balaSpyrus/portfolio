@@ -1,91 +1,27 @@
 {
     "name": {
         "first": "Balaubramanian",
-        "middle": "",
-        "last": "Nagarajan"
+        "last": "Nagarajan",
+        "middle": ""
     },
-    "skills": [
-        {
-            "name": "TypeScript",
-            "level": 7
-        },
-        {
-            "name": "JavaScript",
-            "level": 8
-        },
-        {
-            "name": "React JS",
-            "level": 10
-        },
-        {
-            "name": "Java",
-            "level": 5
-        },
-        {
-            "name": "Node JS",
-            "level": 5
-        },
-        {
-            "name": "Express JS",
-            "level": 6
-        },
-        {
-            "name": "HTML 5",
-            "level": 7
-        },
-        {
-            "name": "CSS",
-            "level": 7
-        },
-        {
-            "name": "SQL",
-            "level": 4
-        },
-        {
-            "name": "Mongo DB",
-            "level": 6
-        },
-        {
-            "name": "Spring Boot",
-            "level": 5
-        },
-        {
-            "name": "Docker",
-            "level": 2
-        },
-        {
-            "name": "React Native",
-            "level": 4
-        }
-    ],
-    "startDate": 1467225000000,
-    "avatarURL": "/asserts/images/profile.png",
     "about": "Dedicated and accomplished Software Engineer with over {{exp}} years of experience in the IT industry, specializing in front-end heavy full-stack development using ReactJS, TypeScript, JavaScript, Java and web technologies. Proven track record of leading successful projects, collaborating with cross-functional teams, and delivering high-quality solutions. Passionate about mentoring and contributing to the growth of junior developers.",
-    "social": {
-        "linkedIn": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/",
-        "facebook": "https://www.facebook.com/bala.spyrus",
-        "instagram": "https://www.instagram.com/bala_spyrus/"
-    },
-    "contact": {
-        "email": "bbalax.bbalax@gmail.com",
-        "phone": "9487680919"
-    },
+    "avatarURL": "profile",
     "main": {
         "work": [
             {
                 "from": 1659378600000,
-                "to": null,
-                "name": "Freshworks",
                 "designation": "Lead Software Engineer",
-                "imageURL": "/asserts/images/logos/freshworks.png",
-                "workNotes": []
+                "to": null,
+                "imageURL": "logos/freshworks",
+                "workNotes": [],
+                "name": "Freshworks"
             },
             {
                 "from": 1590949800000,
-                "to": 1659378600000,
-                "name": "Walmart Global Tech India",
                 "designation": "Software Engineer - III",
-                "imageURL": "/asserts/images/logos/walmart.png",
+                "name": "Walmart Global Tech India",
+                "to": 1659378600000,
+                "imageURL": "logos/walmart",
                 "workNotes": [
                     "Led front-end development for License & Permits Manager, delivering the product for 14 markets within a short span of time",
                     "Developed and maintained a License & Permits Manager Tool used to define user flow for license procurement and renewal across various facilities and products",
@@ -99,11 +35,11 @@
                 ]
             },
             {
+                "name": "MSYS Technologies",
+                "imageURL": "logos/msys",
                 "from": 1525113000000,
                 "to": 1588271400000,
-                "name": "MSYS Technologies",
                 "designation": "Senior Software Engineer",
-                "imageURL": "/asserts/images/logos/msys.png",
                 "workNotes": [
                     "Created an intuitive interface for customers to manage volumes, arrays, and visualize hardware status using ReactJS for front-end development and JAVA for back-end, ensuring a seamless full-stack experience",
                     "Collaborated with a storage client, delivering custom features to meet specific needs and enhancing the existing application",
@@ -112,160 +48,224 @@
                 ]
             },
             {
-                "from": 1464719400000,
-                "to": 1525113000000,
                 "name": "Wipro",
+                "to": 1525113000000,
                 "designation": "Project Engineer",
-                "imageURL": "/asserts/images/logos/wipro.png",
+                "from": 1464719400000,
                 "workNotes": [
                     "Spearheaded a project for a leading retail customer, optimizing warehouse operations using application in an Android Scanner gun",
                     "Modernized PLSQL Oracle forms to cutting-edge technologies, employing ReactJS, Spring Boot, and Oracle SQL as the tech stack",
                     "Led full-stack development efforts, ensuring seamless integration and user-friendly interfaces",
                     "Successfully delivered the project, streamlining warehouse management processes and enhancing overall efficiency"
-                ]
-            }
-        ],
-        "education": [
-            {
-                "from": 0,
-                "to": 0,
-                "name": "Karpagam college of Engineering",
-                "type": "UG",
-                "secured": 7.87,
-                "grade": "CGPA",
-                "notes": []
-            },
-            {
-                "from": 0,
-                "to": 0,
-                "name": "St Xavier's Higher Secondary School",
-                "type": "12th",
-                "secured": 69.3,
-                "grade": "%",
-                "notes": []
-            },
-            {
-                "from": 0,
-                "to": 0,
-                "name": "C.M Higher Secondary School",
-                "type": "10th",
-                "secured": 90,
-                "grade": "%",
-                "notes": []
+                ],
+                "imageURL": "logos/wipro"
             }
         ],
         "certificates": [],
         "accomplishments": [],
-        "hobbies": [],
         "someOfMyWorks": [
             {
-                "imageURL": "/asserts/images/works/work1.png",
+                "name": "Photoshop Works",
+                "imageURL": "works/image1"
+            },
+            {
+                "name": "Photoshop Works",
+                "imageURL": "works/image2"
+            },
+            {
+                "imageURL": "works/image3",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work2.jpg",
+                "name": "Photoshop Works",
+                "imageURL": "works/image4"
+            },
+            {
+                "name": "Photoshop Works",
+                "imageURL": "works/image5"
+            },
+            {
+                "imageURL": "works/image6",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work3.jpg",
+                "name": "Photoshop Works",
+                "imageURL": "works/image7"
+            },
+            {
+                "imageURL": "works/image8",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work4.png",
+                "imageURL": "works/image9",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work5.png",
+                "name": "Photoshop Works",
+                "imageURL": "works/image10"
+            },
+            {
+                "imageURL": "works/image11",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work6.png",
+                "imageURL": "works/image12",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work7.png",
+                "name": "Photoshop Works",
+                "imageURL": "works/image13"
+            },
+            {
+                "name": "Photoshop Works",
+                "imageURL": "works/image14"
+            },
+            {
+                "imageURL": "works/image15",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work8.png",
+                "name": "Photoshop Works",
+                "imageURL": "works/image16"
+            },
+            {
+                "imageURL": "works/image17",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work9.png",
+                "name": "Photoshop Works",
+                "imageURL": "works/image18"
+            },
+            {
+                "imageURL": "works/image19",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work10.png",
+                "name": "Photoshop Works",
+                "imageURL": "works/image20"
+            },
+            {
+                "name": "Photoshop Works",
+                "imageURL": "works/image21"
+            },
+            {
+                "imageURL": "works/image22",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work11.jpg",
+                "imageURL": "works/image23",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work12.jpg",
+                "name": "Photoshop Works",
+                "imageURL": "works/image24"
+            },
+            {
+                "imageURL": "works/image25",
                 "name": "Photoshop Works"
             },
             {
-                "imageURL": "/asserts/images/works/work13.png",
-                "name": "Photoshop Works"
+                "name": "Photoshop Works",
+                "imageURL": "works/image26"
             },
             {
-                "imageURL": "/asserts/images/works/work14.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work15.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work16.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work17.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work18.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work19.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work20.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work21.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work22.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work23.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work24.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work25.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work26.png",
-                "name": "Photoshop Works"
-            },
-            {
-                "imageURL": "/asserts/images/works/work27.png",
+                "imageURL": "works/image27",
                 "name": "Photoshop Works"
             }
+        ],
+        "hobbies": [],
+        "education": [
+            {
+                "notes": [],
+                "name": "Karpagam college of Engineering",
+                "secured": 7.87,
+                "to": 0,
+                "grade": "CGPA",
+                "type": "UG",
+                "from": 0
+            },
+            {
+                "from": 0,
+                "type": "12th",
+                "grade": "%",
+                "name": "St Xavier's Higher Secondary School",
+                "to": 0,
+                "secured": 69.3,
+                "notes": []
+            },
+            {
+                "from": 0,
+                "grade": "%",
+                "type": "10th",
+                "to": 0,
+                "notes": [],
+                "name": "C.M Higher Secondary School",
+                "secured": 90
+            }
         ]
-    }
+    },
+    "startDate": 1467225000000,
+    "contact": {
+        "phone": "*****80919",
+        "email": "bbalax.bbalax@gmail.com"
+    },
+    "social": {
+        "instagram": "https://www.instagram.com/",
+        "facebook": "https://www.facebook.com",
+        "linkedIn": "https://www.linkedin.com/in/balasubramanian-nagarajan-9554438a/"
+    },
+    "skills": [
+        {
+            "name": "TypeScript",
+            "level": 7
+        },
+        {
+            "level": 8,
+            "name": "JavaScript"
+        },
+        {
+            "name": "React JS",
+            "level": 10
+        },
+        {
+            "name": "Java",
+            "level": 5
+        },
+        {
+            "level": 5,
+            "name": "Node JS"
+        },
+        {
+            "name": "Express JS",
+            "level": 6
+        },
+        {
+            "name": "HTML 5",
+            "level": 7
+        },
+        {
+            "level": 7,
+            "name": "CSS"
+        },
+        {
+            "level": 4,
+            "name": "SQL"
+        },
+        {
+            "level": 6,
+            "name": "Mongo DB"
+        },
+        {
+            "level": 5,
+            "name": "Spring Boot"
+        },
+        {
+            "level": 2,
+            "name": "Docker"
+        },
+        {
+            "name": "React Native",
+            "level": 4
+        }
+    ]
 }
