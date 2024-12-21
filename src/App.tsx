@@ -84,26 +84,32 @@ function App() {
         }
     }, []);
 
-    const getSavedData = useCallback(async (db: Firestore) => {
-        await getDocs(collection(db, 'portfolio_data')).then((querySnapshot) => {
-            const portfolioData: ProfileContext['profileData'][] = querySnapshot.docs.map((doc) => ({
-                ...doc.data().portfolioData,
-                id: doc.id,
-            }));
-            setProfileData(portfolioData[0]);
-        });
-    }, []);
-
-    const getProfile = async () => {
+    const getProfile = async () =>
         fetch('profile.json', {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-        })
-            .then((data) => data.json())
-            .then((data) => setProfileData(data as ProfileContext['profileData']));
-    };
+        }).then((data) => data.json() as unknown as ProfileContext['profileData']);
+
+    const getSavedData = useCallback(
+        async (db: Firestore) => {
+            await getDocs(collection(db, 'portfolio_data')).then(async (querySnapshot) => {
+                const portfolioData: ProfileContext['profileData'][] = querySnapshot.docs.map((doc) => ({
+                    ...doc.data().portfolioData,
+                    id: doc.id,
+                }));
+                if (portfolioData.length) {
+                    setProfileData(portfolioData[0]);
+                } else {
+                    const profileData = await getProfile();
+                    await saveProfileData(profileData, db);
+                    setProfileData(profileData);
+                }
+            });
+        },
+        [saveProfileData],
+    );
 
     const initializeFireBase = () => {
         const app = initializeApp(FIREBASE_CONFIG);
@@ -114,12 +120,10 @@ function App() {
 
     useEffect(() => {
         initializeFireBase();
-        // getProfile();
     }, []);
 
     useEffect(() => {
         if (fireBaseConfig?.fireStore && !profileData) {
-            // saveProfileData(profileData, fireBaseConfig.fireStore);
             getSavedData(fireBaseConfig.fireStore);
         }
     }, [fireBaseConfig?.fireStore, getSavedData, profileData]);

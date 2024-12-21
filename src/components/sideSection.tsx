@@ -17,6 +17,9 @@ import sortBy from 'lodash/sortBy';
 import { useContext } from 'react';
 import { useLayoutStyles } from '../App';
 import { Profile } from '../context';
+import { getCloudinaryBuilder } from '../utils';
+import { name as cName } from '@cloudinary/url-gen/actions/namedTransformation';
+import { limitFit } from '@cloudinary/url-gen/actions/resize';
 
 const SKILL_METER = {
     0: colors.red[500],
@@ -120,7 +123,11 @@ const SideSection = () => {
         <Grid container item className={clsx(layoutClasses.layout, layoutClasses.infoSection)} direction={'column'}>
             <Grid item>
                 <Grow in={true} timeout={1000}>
-                    <Avatar alt={name.first} src={process.env.PUBLIC_URL + avatarURL} className={classes.avatar} />
+                    <Avatar
+                        alt={name.first}
+                        src={getCloudinaryBuilder(avatarURL).resize(limitFit().width(400).height(400)).toURL()}
+                        className={classes.avatar}
+                    />
                 </Grow>
             </Grid>
             <Grid item>
@@ -134,7 +141,9 @@ const SideSection = () => {
                                 <Avatar
                                     variant="square"
                                     className={classes.logo}
-                                    src={process.env.PUBLIC_URL + (currCompany?.imageURL ?? '')}
+                                    src={getCloudinaryBuilder(currCompany?.imageURL ?? '')
+                                        .namedTransformation(cName('media_lib_thumb'))
+                                        .toURL()}
                                     alt={currCompany?.name ?? ''}
                                 />
                             </Grid>

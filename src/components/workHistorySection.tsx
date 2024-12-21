@@ -2,7 +2,10 @@ import { Grid, List, ListItem, ListItemText, Theme, Typography } from '@mui/mate
 import makeStyles from '@mui/styles/makeStyles';
 import { Variants, motion } from 'framer-motion';
 import { WorkType } from '../types';
-import { getDate } from '../utils';
+import { getCloudinaryBuilder, getDate } from '../utils';
+import { format, quality } from '@cloudinary/url-gen/actions/delivery';
+import { scale, auto } from '@cloudinary/url-gen/actions/resize';
+import { QualityTypes } from '@cloudinary/url-gen/types/types';
 
 interface Props {
     details: WorkType[];
@@ -132,7 +135,7 @@ const WorkHistorySection: React.FC<Props> = ({ details }) => {
             gap={3}
             variants={containerVariants}
             component={motion.div}>
-            {details.map(({ name: company, designation, from, to, workNotes, imageURL: logoURL = '' }, i) => (
+            {details.map(({ name: company, designation, from, to, workNotes, imageURL = '' }, i) => (
                 <Grid
                     key={company}
                     variants={experienceVariants}
@@ -147,7 +150,11 @@ const WorkHistorySection: React.FC<Props> = ({ details }) => {
                     <motion.img
                         variants={imgVariants}
                         className={classes.logo}
-                        src={process.env.PUBLIC_URL + logoURL}
+                        src={getCloudinaryBuilder(imageURL)
+                            .resize(scale().width(1000))
+                            .delivery(quality('auto'))
+                            .delivery(format('auto'))
+                            .toURL()}
                         alt={company}
                     />
                     <Grid item flex={0}>

@@ -4,8 +4,9 @@ import { makeStyles, useTheme } from '@mui/styles';
 import { Variants, motion } from 'framer-motion';
 import React from 'react';
 import { WorksImgSetType } from '../types';
-
+import { fit } from '@cloudinary/url-gen/actions/resize';
 import { Accordion, AccordionDetails, AccordionSummary } from './common/accordian';
+import { getCloudinaryBuilder } from '../utils';
 
 interface Props {
     details: WorksImgSetType[];
@@ -77,17 +78,28 @@ const WorksSection: React.FC<Props> = ({ details: imgSet }) => {
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="website-content" id="website-header">
                     <Typography>Personal website works</Typography>
                 </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="caption">
-                        Link :{' '}
-                        <a href="https://balaspyrus.github.io/mocktrello/"> https://balaspyrus.github.io/mocktrello/</a>
-                    </Typography>
-
-                    <iframe
-                        className={classes.iframe}
-                        src="https://balaspyrus.github.io/mocktrello/"
-                        title="trello clone"
-                    />
+                <AccordionDetails className="work-accordion-details">
+                    <section>
+                        <Typography variant="caption">
+                            Link :{' '}
+                            <a href="https://mock-trello-2-0.onrender.com/"> Dockerized Task Management Application</a>
+                        </Typography>
+                        <iframe
+                            className={classes.iframe}
+                            src="https://mock-trello-2-0.onrender.com/"
+                            title="Task Management Application"
+                        />
+                    </section>
+                    <section>
+                        <Typography variant="caption">
+                            Link : <a href="https://pictionary.url4u.in/"> Interactive Pictionary game</a>
+                        </Typography>
+                        <iframe
+                            className={classes.iframe}
+                            src="https://pictionary.url4u.in/"
+                            title="Pictionary game Application"
+                        />
+                    </section>
                 </AccordionDetails>
             </Accordion>
             <Accordion defaultExpanded>
@@ -102,33 +114,36 @@ const WorksSection: React.FC<Props> = ({ details: imgSet }) => {
                         sx={{ margin: 0 }}
                         component={motion.ul}
                         variants={containerVariants}>
-                        {imgSet.map(({ name, imageURL, desc }) => (
-                            <ImageListItem
-                                key={imageURL}
-                                className={classes.imgListItem}
-                                component={motion.li}
-                                variants={childrenVarients}
-                                sx={{
-                                    '& > *': {
-                                        borderRadius: 1,
-                                    },
-                                }}>
-                                <motion.img
-                                    className={classes.img}
-                                    src={`${process.env.PUBLIC_URL + imageURL}?w=248&h=248&fit=crop&auto=format`}
-                                    srcSet={`${process.env.PUBLIC_URL + imageURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                    alt={name}
-                                    loading="lazy"
-                                />
-                                <ImageListItemBar
-                                    position="bottom"
+                        {imgSet.map(({ name, imageURL, desc }) => {
+                            const url = getCloudinaryBuilder(imageURL).resize(fit().width(248)).toURL();
+                            return (
+                                <ImageListItem
+                                    key={imageURL}
+                                    className={classes.imgListItem}
+                                    component={motion.li}
+                                    variants={childrenVarients}
                                     sx={{
-                                        background: 'rgb(0 0 0 / 70%)',
-                                    }}
-                                    title={`${name}${desc ? ` . ${desc}` : ''}`}
-                                />
-                            </ImageListItem>
-                        ))}
+                                        '& > *': {
+                                            borderRadius: 1,
+                                        },
+                                    }}>
+                                    <motion.img
+                                        className={classes.img}
+                                        src={url}
+                                        srcSet={url}
+                                        alt={name}
+                                        loading="lazy"
+                                    />
+                                    <ImageListItemBar
+                                        position="bottom"
+                                        sx={{
+                                            background: 'rgb(0 0 0 / 70%)',
+                                        }}
+                                        title={`${name}${desc ? ` . ${desc}` : ''}`}
+                                    />
+                                </ImageListItem>
+                            );
+                        })}
                     </ImageList>
                 </AccordionDetails>
             </Accordion>
